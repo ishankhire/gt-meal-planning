@@ -1,5 +1,5 @@
 import prisma from "./prisma";
-import type { User, UserPreferences, FoodRating, EmailSubscription, NutritionCache } from "../generated/prisma/client";
+import type { User, UserPreferences, FoodRating, EmailSubscription, NutritionCache } from "@prisma/client";
 
 // =============================================================================
 // USER OPERATIONS

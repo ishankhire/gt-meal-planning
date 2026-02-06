@@ -45,5 +45,3 @@ user-food-ratings.json
 email-subscribers.json
 nutrition-cache.json
 next-env.d.ts
-
-/app/generated/prisma
