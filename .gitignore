@@ -39,10 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# user data
+# user data (now stored in database, these are legacy)
 user-preferences.json
 user-food-ratings.json
 email-subscribers.json
+nutrition-cache.json
 next-env.d.ts
 
 /app/generated/prisma

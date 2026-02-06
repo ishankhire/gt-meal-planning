@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { Resend } from 'resend';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import {
+  getUserPreferences,
+  getLikedFoods,
+  isUserSubscribed,
+  setEmailSubscription,
+  findOrCreateUser,
+} from '@/app/lib/db';
 
 // ---------- types ----------
 
@@ -26,33 +31,6 @@ interface DayRecommendation {
   lunch: MealRecommendation;
   dinner: MealRecommendation;
   dayTotals: { calories: number; protein: number; carbs: number; fat: number };
-}
-
-// ---------- email subscriber DB ----------
-
-const SUBSCRIBERS_PATH = join(process.cwd(), 'email-subscribers.json');
-
-interface SubscriberEntry {
-  email: string;
-  name: string | null;
-  optedIn: boolean;
-}
-
-interface AllSubscribers {
-  [email: string]: SubscriberEntry;
-}
-
-function readSubscribers(): AllSubscribers {
-  try {
-    if (!existsSync(SUBSCRIBERS_PATH)) return {};
-    return JSON.parse(readFileSync(SUBSCRIBERS_PATH, 'utf-8'));
-  } catch {
-    return {};
-  }
-}
-
-function writeSubscribers(subs: AllSubscribers) {
-  writeFileSync(SUBSCRIBERS_PATH, JSON.stringify(subs, null, 2));
 }
 
 // ---------- internal API helpers (reuse existing routes) ----------
@@ -249,16 +227,11 @@ export async function POST(request: NextRequest) {
   const email = session.user.email;
   const name = session.user.name ?? null;
 
-  // Update subscriber DB
-  const subs = readSubscribers();
-  if (optIn) {
-    subs[email] = { email, name, optedIn: true };
-  } else {
-    if (subs[email]) {
-      subs[email].optedIn = false;
-    }
-  }
-  writeSubscribers(subs);
+  // Ensure user exists in DB
+  await findOrCreateUser(email, name);
+
+  // Update subscription status
+  await setEmailSubscription(email, optIn);
 
   // If opting in, immediately send tomorrow's recommendations
   if (optIn) {
@@ -267,31 +240,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Server API keys not configured' }, { status: 500 });
     }
 
-    // Load user goals from preferences
-    const prefsPath = join(process.cwd(), 'user-preferences.json');
-    let goals = { dailyCalories: 2000, dailyProtein: 150, fitnessGoal: '', appetite: 'medium', taste: 'balanced', restrictions: '' };
-    try {
-      if (existsSync(prefsPath)) {
-        const allPrefs = JSON.parse(readFileSync(prefsPath, 'utf-8'));
-        if (allPrefs[email]) {
-          const { filters: _filters, ...savedGoals } = allPrefs[email];
-          goals = { ...goals, ...savedGoals };
-        }
-      }
-    } catch { /* use defaults */ }
+    // Load user goals from database
+    const prefs = await getUserPreferences(email);
+    const goals = {
+      dailyCalories: prefs?.dailyCalories ?? 2000,
+      dailyProtein: prefs?.dailyProtein ?? 150,
+      fitnessGoal: prefs?.fitnessGoal ?? '',
+      appetite: prefs?.appetite ?? 'medium',
+      restrictions: prefs?.restrictions ?? '',
+    };
 
-    // Load user food ratings for liked items
-    const ratingsPath = join(process.cwd(), 'user-food-ratings.json');
-    let likedItems: string[] = [];
-    try {
-      if (existsSync(ratingsPath)) {
-        const allRatings = JSON.parse(readFileSync(ratingsPath, 'utf-8'));
-        const userRatings = allRatings[email] ?? {};
-        likedItems = Object.entries(userRatings)
-          .filter(([, v]) => v === 'like')
-          .map(([k]) => k);
-      }
-    } catch { /* no ratings */ }
+    // Load user liked foods from database
+    const likedItems = await getLikedFoods(email);
 
     // Tomorrow's date
     const tomorrow = new Date();
@@ -338,7 +298,6 @@ export async function GET() {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 
-  const subs = readSubscribers();
-  const entry = subs[session.user.email];
-  return NextResponse.json({ optedIn: entry?.optedIn ?? false });
+  const optedIn = await isUserSubscribed(session.user.email);
+  return NextResponse.json({ optedIn });
 }

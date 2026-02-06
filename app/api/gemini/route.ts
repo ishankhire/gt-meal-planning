@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
 import { GoogleGenAI, Type } from '@google/genai';
-
-const CACHE_PATH = join(process.cwd(), 'nutrition-cache.json');
+import { getNutritionFromCache, setNutritionCache, type NutritionData } from '@/app/lib/db';
 
 interface FoodEstimate {
   servingSize: string;
@@ -17,23 +14,6 @@ interface FoodInput {
   name: string;
   servingSize: string;
   ingredients: string | null;
-}
-
-interface CacheData {
-  [key: string]: FoodEstimate;
-}
-
-function readCache(): CacheData {
-  try {
-    const data = readFileSync(CACHE_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return {};
-  }
-}
-
-function writeCache(cache: CacheData) {
-  writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2));
 }
 
 function getCacheKey(name: string): string {
@@ -55,14 +35,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Gemini API key not configured' }, { status: 500 });
   }
 
-  const cache = readCache();
   const results: Record<string, FoodEstimate> = {};
   const uncachedItems: FoodInput[] = [];
 
+  // Check database cache for each item
   for (const item of items) {
     const key = getCacheKey(item.name);
-    if (cache[key]) {
-      results[key] = cache[key];
+    const cached = await getNutritionFromCache(key);
+    if (cached) {
+      results[key] = cached;
     } else {
       uncachedItems.push(item);
     }
@@ -115,9 +96,10 @@ ${foodList}`;
       if (text) {
         const estimates: FoodEstimate[] = JSON.parse(text);
 
+        // Save new estimates to database cache
         for (let i = 0; i < uncachedItems.length && i < estimates.length; i++) {
           const key = getCacheKey(uncachedItems[i].name);
-          const estimate: FoodEstimate = {
+          const estimate: NutritionData = {
             servingSize: estimates[i].servingSize,
             calories: Math.round(estimates[i].calories),
             protein: Math.round(estimates[i].protein),
@@ -125,10 +107,12 @@ ${foodList}`;
             fat: Math.round(estimates[i].fat),
           };
           results[key] = estimate;
-          cache[key] = estimate;
-        }
 
-        writeCache(cache);
+          // Save to database (don't await to avoid blocking response)
+          setNutritionCache(key, estimate).catch((err) => {
+            console.error(`Failed to cache nutrition for ${key}:`, err);
+          });
+        }
       }
     } catch (err) {
       console.error('Gemini request failed:', err);
