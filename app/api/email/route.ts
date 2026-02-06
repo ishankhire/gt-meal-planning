@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { Resend } from 'resend';
 import {
   getUserPreferences,
@@ -217,7 +218,7 @@ function buildEmailHtml(
 // ---------- POST: subscribe/unsubscribe ----------
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
@@ -293,7 +294,7 @@ export async function POST(request: NextRequest) {
 // ---------- GET: check subscription status ----------
 
 export async function GET() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }

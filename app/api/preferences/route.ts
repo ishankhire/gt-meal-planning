@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getUserPreferences, upsertUserPreferences, preferencesToJson } from '@/app/lib/db';
 
 interface UserPreferencesInput {
@@ -17,7 +18,7 @@ interface UserPreferencesInput {
 
 // GET — load saved preferences for the logged-in user
 export async function GET() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
@@ -28,7 +29,7 @@ export async function GET() {
 
 // POST — save preferences for the logged-in user
 export async function POST(request: NextRequest) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
