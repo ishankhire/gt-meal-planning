@@ -1,0 +1,1913 @@
+{
+  "beef stroganoff": {
+    "servingSize": "4 oz",
+    "calories": 450,
+    "protein": 28,
+    "carbs": 10,
+    "fat": 35
+  },
+  "bbq chicken": {
+    "servingSize": "4 oz",
+    "calories": 380,
+    "protein": 28,
+    "carbs": 12,
+    "fat": 22
+  },
+  "steamed vegetables": {
+    "servingSize": "1/2 cup",
+    "calories": 120,
+    "protein": 5,
+    "carbs": 18,
+    "fat": 6
+  },
+  "buttered egg noodles": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 5,
+    "carbs": 22,
+    "fat": 9
+  },
+  "potatoes au gratin": {
+    "servingSize": "1/3 cup",
+    "calories": 140,
+    "protein": 4,
+    "carbs": 20,
+    "fat": 7
+  },
+  "beef fritter": {
+    "servingSize": "1 patty",
+    "calories": 300,
+    "protein": 18,
+    "carbs": 12,
+    "fat": 20
+  },
+  "hamburger patty": {
+    "servingSize": "1 patty",
+    "calories": 320,
+    "protein": 28,
+    "carbs": 0,
+    "fat": 22
+  },
+  "black bean burger": {
+    "servingSize": "1 burger",
+    "calories": 220,
+    "protein": 12,
+    "carbs": 30,
+    "fat": 7
+  },
+  "hamburger bun": {
+    "servingSize": "1 bun",
+    "calories": 140,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 3
+  },
+  "hot dog buns": {
+    "servingSize": "1 bun",
+    "calories": 130,
+    "protein": 4,
+    "carbs": 25,
+    "fat": 2
+  },
+  "grilled chicken breast": {
+    "servingSize": "1 breast",
+    "calories": 220,
+    "protein": 42,
+    "carbs": 0,
+    "fat": 4
+  },
+  "hot dog chili": {
+    "servingSize": "1/4 cup",
+    "calories": 100,
+    "protein": 6,
+    "carbs": 8,
+    "fat": 6
+  },
+  "hot dog": {
+    "servingSize": "1 hot dog",
+    "calories": 180,
+    "protein": 7,
+    "carbs": 2,
+    "fat": 14
+  },
+  "shoestring fries": {
+    "servingSize": "4 oz",
+    "calories": 350,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 20
+  },
+  "guacamole": {
+    "servingSize": "1 oz",
+    "calories": 60,
+    "protein": 1,
+    "carbs": 4,
+    "fat": 6
+  },
+  "sauteed tofu bell peppers and onions": {
+    "servingSize": "1/2 cup",
+    "calories": 150,
+    "protein": 10,
+    "carbs": 10,
+    "fat": 10
+  },
+  "fajita vegetables": {
+    "servingSize": "3 oz",
+    "calories": 75,
+    "protein": 2,
+    "carbs": 10,
+    "fat": 4
+  },
+  "beef barbacoa": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 28,
+    "carbs": 1,
+    "fat": 20
+  },
+  "cheddar jack cheese": {
+    "servingSize": "1 oz",
+    "calories": 115,
+    "protein": 7,
+    "carbs": 1,
+    "fat": 9
+  },
+  "shredded lettuce": {
+    "servingSize": "1 oz",
+    "calories": 8,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 0
+  },
+  "arroz verde": {
+    "servingSize": "1/3 cup",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 16,
+    "fat": 3
+  },
+  "tomato salsa": {
+    "servingSize": "1 oz",
+    "calories": 12,
+    "protein": 0,
+    "carbs": 3,
+    "fat": 0
+  },
+  "flour tortilla": {
+    "servingSize": "1 tortilla",
+    "calories": 120,
+    "protein": 3,
+    "carbs": 22,
+    "fat": 4
+  },
+  "sour cream": {
+    "servingSize": "1 oz",
+    "calories": 55,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 5
+  },
+  "jalapeno peppers": {
+    "servingSize": "1 oz",
+    "calories": 8,
+    "protein": 0,
+    "carbs": 2,
+    "fat": 0
+  },
+  "chicken, fajita, grilled": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 28,
+    "carbs": 2,
+    "fat": 7
+  },
+  "steamed corn": {
+    "servingSize": "1/2 cup",
+    "calories": 70,
+    "protein": 2,
+    "carbs": 18,
+    "fat": 1
+  },
+  "ginger chili chicken thigh": {
+    "servingSize": "4 oz",
+    "calories": 350,
+    "protein": 28,
+    "carbs": 12,
+    "fat": 25
+  },
+  "roasted sliced mushrooms": {
+    "servingSize": "1/2 cup",
+    "calories": 70,
+    "protein": 2,
+    "carbs": 4,
+    "fat": 7
+  },
+  "pad thai noodles": {
+    "servingSize": "1 cup",
+    "calories": 200,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 1
+  },
+  "pho vegetable broth": {
+    "servingSize": "4 oz",
+    "calories": 15,
+    "protein": 1,
+    "carbs": 3,
+    "fat": 0
+  },
+  "smoked pork belly": {
+    "servingSize": "1 slice",
+    "calories": 180,
+    "protein": 7,
+    "carbs": 2,
+    "fat": 18
+  },
+  "cheese pizza": {
+    "servingSize": "1 slice",
+    "calories": 300,
+    "protein": 12,
+    "carbs": 35,
+    "fat": 13
+  },
+  "pepperoni pizza": {
+    "servingSize": "1 slice",
+    "calories": 350,
+    "protein": 15,
+    "carbs": 35,
+    "fat": 18
+  },
+  "vegetable tikka masala pizza": {
+    "servingSize": "1 slice",
+    "calories": 350,
+    "protein": 12,
+    "carbs": 40,
+    "fat": 15
+  },
+  "hot honey sausage flatbread": {
+    "servingSize": "1 flatbread",
+    "calories": 500,
+    "protein": 25,
+    "carbs": 50,
+    "fat": 28
+  },
+  "tuna salad": {
+    "servingSize": "3 oz",
+    "calories": 220,
+    "protein": 18,
+    "carbs": 3,
+    "fat": 18
+  },
+  "beef barley soup": {
+    "servingSize": "8 oz",
+    "calories": 180,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 8
+  },
+  "tomato roasted red pepper bisque": {
+    "servingSize": "8 oz",
+    "calories": 220,
+    "protein": 4,
+    "carbs": 25,
+    "fat": 12
+  },
+  "eggplant caponata": {
+    "servingSize": "6 oz",
+    "calories": 180,
+    "protein": 3,
+    "carbs": 25,
+    "fat": 10
+  },
+  "rice pilaf with carrots": {
+    "servingSize": "1/2 cup",
+    "calories": 130,
+    "protein": 2,
+    "carbs": 24,
+    "fat": 3
+  },
+  "sauteed swiss chard": {
+    "servingSize": "2.6 oz",
+    "calories": 75,
+    "protein": 2,
+    "carbs": 4,
+    "fat": 7
+  },
+  "sweet chili glazed tofu": {
+    "servingSize": "2 pieces (4 oz)",
+    "calories": 240,
+    "protein": 12,
+    "carbs": 25,
+    "fat": 18
+  },
+  "pasta station": {
+    "servingSize": "1 serving",
+    "calories": 350,
+    "protein": 12,
+    "carbs": 55,
+    "fat": 8
+  },
+  "chicken cordon bleu": {
+    "servingSize": "1 piece",
+    "calories": 350,
+    "protein": 28,
+    "carbs": 20,
+    "fat": 18
+  },
+  "corn on the cob": {
+    "servingSize": "1 ear",
+    "calories": 50,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 1
+  },
+  "blackened salmon": {
+    "servingSize": "1 piece",
+    "calories": 90,
+    "protein": 11,
+    "carbs": 1,
+    "fat": 5
+  },
+  "roasted red potatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 18,
+    "fat": 3
+  },
+  "supreme sauce": {
+    "servingSize": "1 gallon",
+    "calories": 3500,
+    "protein": 40,
+    "carbs": 120,
+    "fat": 300
+  },
+  "apple sauce": {
+    "servingSize": "1 Tbsp",
+    "calories": 12,
+    "protein": 0,
+    "carbs": 3,
+    "fat": 0
+  },
+  "braised cabbage": {
+    "servingSize": "1/2 cup",
+    "calories": 40,
+    "protein": 1,
+    "carbs": 6,
+    "fat": 2
+  },
+  "potato pancake": {
+    "servingSize": "4 oz",
+    "calories": 180,
+    "protein": 3,
+    "carbs": 20,
+    "fat": 10
+  },
+  "dijon cheese sauce": {
+    "servingSize": "1 Tbsp",
+    "calories": 40,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 3
+  },
+  "bratwurst": {
+    "servingSize": "1 piece",
+    "calories": 280,
+    "protein": 14,
+    "carbs": 3,
+    "fat": 24
+  },
+  "roasted turkey": {
+    "servingSize": "1 oz",
+    "calories": 45,
+    "protein": 8,
+    "carbs": 0,
+    "fat": 1
+  },
+  "mushroom gravy": {
+    "servingSize": "2 oz ladle",
+    "calories": 40,
+    "protein": 2,
+    "carbs": 4,
+    "fat": 2
+  },
+  "black bean and veggie stir fry": {
+    "servingSize": "1 serving",
+    "calories": 200,
+    "protein": 10,
+    "carbs": 30,
+    "fat": 5
+  },
+  "stir fry broccoli": {
+    "servingSize": "4 oz ladle",
+    "calories": 80,
+    "protein": 3,
+    "carbs": 10,
+    "fat": 4
+  },
+  "roasted cauliflower": {
+    "servingSize": "1/2 cup",
+    "calories": 40,
+    "protein": 1,
+    "carbs": 4,
+    "fat": 2
+  },
+  "lo mein noodles": {
+    "servingSize": "1/2 cup",
+    "calories": 95,
+    "protein": 3,
+    "carbs": 19,
+    "fat": 1
+  },
+  "spaghetti noodles": {
+    "servingSize": "1 cup",
+    "calories": 210,
+    "protein": 7,
+    "carbs": 42,
+    "fat": 2
+  },
+  "baked mahi mahi": {
+    "servingSize": "1 fillet",
+    "calories": 110,
+    "protein": 23,
+    "carbs": 0,
+    "fat": 2
+  },
+  "bbq broccolini": {
+    "servingSize": "2 oz",
+    "calories": 50,
+    "protein": 2,
+    "carbs": 11,
+    "fat": 0
+  },
+  "chicken broccoli rice casserole": {
+    "servingSize": "1/2 cup",
+    "calories": 220,
+    "protein": 15,
+    "carbs": 20,
+    "fat": 10
+  },
+  "tomato infused cous cous": {
+    "servingSize": "1/2 cup",
+    "calories": 150,
+    "protein": 5,
+    "carbs": 30,
+    "fat": 3
+  },
+  "lemon cream dill sauce": {
+    "servingSize": "1 gallon",
+    "calories": 9600,
+    "protein": 128,
+    "carbs": 192,
+    "fat": 768
+  },
+  "chicken nuggets": {
+    "servingSize": "1 oz",
+    "calories": 75,
+    "protein": 5,
+    "carbs": 5,
+    "fat": 4
+  },
+  "crinkle cut fries": {
+    "servingSize": "4 oz",
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 18
+  },
+  "veggie burger": {
+    "servingSize": "1 burger",
+    "calories": 180,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 8
+  },
+  "grilled cheese and tomato sandwich": {
+    "servingSize": "1 sandwich",
+    "calories": 480,
+    "protein": 18,
+    "carbs": 32,
+    "fat": 31
+  },
+  "peeled slim baby carrots": {
+    "servingSize": "1 oz",
+    "calories": 12,
+    "protein": 0,
+    "carbs": 3,
+    "fat": 0
+  },
+  "celery sticks": {
+    "servingSize": "1 oz",
+    "calories": 4,
+    "protein": 0,
+    "carbs": 1,
+    "fat": 0
+  },
+  "bleu cheese dressing": {
+    "servingSize": "2 oz",
+    "calories": 280,
+    "protein": 2,
+    "carbs": 5,
+    "fat": 28
+  },
+  "ranch dressing": {
+    "servingSize": "2 oz",
+    "calories": 280,
+    "protein": 1,
+    "carbs": 5,
+    "fat": 28
+  },
+  "cole slaw": {
+    "servingSize": "2 oz",
+    "calories": 130,
+    "protein": 1,
+    "carbs": 10,
+    "fat": 11
+  },
+  "fried green tomatoes": {
+    "servingSize": "4 oz",
+    "calories": 220,
+    "protein": 4,
+    "carbs": 22,
+    "fat": 18
+  },
+  "hot honey chicken wings": {
+    "servingSize": "2 wings",
+    "calories": 280,
+    "protein": 18,
+    "carbs": 15,
+    "fat": 18
+  },
+  "korean bbq chicken wings": {
+    "servingSize": "2 wings",
+    "calories": 270,
+    "protein": 18,
+    "carbs": 12,
+    "fat": 18
+  },
+  "lemon pepper chicken wings": {
+    "servingSize": "2 wings",
+    "calories": 250,
+    "protein": 18,
+    "carbs": 4,
+    "fat": 18
+  },
+  "plain chicken wings": {
+    "servingSize": "2 wings",
+    "calories": 230,
+    "protein": 18,
+    "carbs": 0,
+    "fat": 18
+  },
+  "veggie nuggets": {
+    "servingSize": "5 nuggets",
+    "calories": 200,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 10
+  },
+  "lemon roasted chicken": {
+    "servingSize": "2 pieces",
+    "calories": 300,
+    "protein": 32,
+    "carbs": 0,
+    "fat": 18
+  },
+  "blistered tomatoes and chickpeas": {
+    "servingSize": "1/4 cup",
+    "calories": 70,
+    "protein": 3,
+    "carbs": 10,
+    "fat": 3
+  },
+  "quinoa": {
+    "servingSize": "1/3 cup",
+    "calories": 75,
+    "protein": 3,
+    "carbs": 14,
+    "fat": 1
+  },
+  "marinara sauce": {
+    "servingSize": "4 oz",
+    "calories": 70,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 3
+  },
+  "sliced italian sausage": {
+    "servingSize": "1/2 cup",
+    "calories": 280,
+    "protein": 18,
+    "carbs": 3,
+    "fat": 22
+  },
+  "spinach artichoke cheesy bread": {
+    "servingSize": "3.6 oz piece",
+    "calories": 280,
+    "protein": 10,
+    "carbs": 35,
+    "fat": 15
+  },
+  "hawaiian pizza": {
+    "servingSize": "1 slice",
+    "calories": 350,
+    "protein": 18,
+    "carbs": 40,
+    "fat": 15
+  },
+  "mandarin oranges": {
+    "servingSize": "1 oz",
+    "calories": 22,
+    "protein": 0,
+    "carbs": 5,
+    "fat": 0
+  },
+  "italian wedding soup": {
+    "servingSize": "8 oz",
+    "calories": 120,
+    "protein": 8,
+    "carbs": 12,
+    "fat": 7
+  },
+  "chicken salad": {
+    "servingSize": "3 oz",
+    "calories": 280,
+    "protein": 18,
+    "carbs": 2,
+    "fat": 20
+  },
+  "moroccan lentil soup": {
+    "servingSize": "8 oz",
+    "calories": 180,
+    "protein": 10,
+    "carbs": 30,
+    "fat": 2
+  },
+  "fruit salad": {
+    "servingSize": "1 oz",
+    "calories": 22,
+    "protein": 0,
+    "carbs": 5,
+    "fat": 0
+  },
+  "fried okra": {
+    "servingSize": "1/2 cup",
+    "calories": 200,
+    "protein": 4,
+    "carbs": 22,
+    "fat": 12
+  },
+  "candied sweet potatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 200,
+    "protein": 1,
+    "carbs": 40,
+    "fat": 7
+  },
+  "corn and lima bean succotash": {
+    "servingSize": "1 lb",
+    "calories": 500,
+    "protein": 12,
+    "carbs": 80,
+    "fat": 20
+  },
+  "chipotle baked tofu": {
+    "servingSize": "1 fillet",
+    "calories": 230,
+    "protein": 11,
+    "carbs": 3,
+    "fat": 20
+  },
+  "peppers, tricolor roasted": {
+    "servingSize": "1 oz",
+    "calories": 20,
+    "protein": 0,
+    "carbs": 3,
+    "fat": 2
+  },
+  "mushroom alfredo sauce": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 8,
+    "carbs": 8,
+    "fat": 30
+  },
+  "whole wheat penne pasta": {
+    "servingSize": "1 cup",
+    "calories": 190,
+    "protein": 7,
+    "carbs": 38,
+    "fat": 1
+  },
+  "grated parmesan cheese": {
+    "servingSize": "1 oz",
+    "calories": 115,
+    "protein": 11,
+    "carbs": 1,
+    "fat": 7
+  },
+  "oregano": {
+    "servingSize": "1 oz",
+    "calories": 80,
+    "protein": 3,
+    "carbs": 20,
+    "fat": 1
+  },
+  "crushed red pepper": {
+    "servingSize": "1 oz",
+    "calories": 80,
+    "protein": 3,
+    "carbs": 15,
+    "fat": 3
+  },
+  "buttermilk biscuit": {
+    "servingSize": "2 3/4 biscuits",
+    "calories": 605,
+    "protein": 11,
+    "carbs": 83,
+    "fat": 30
+  },
+  "blueberry french toast casserole": {
+    "servingSize": "1 scoop",
+    "calories": 350,
+    "protein": 12,
+    "carbs": 45,
+    "fat": 18
+  },
+  "hard-boiled egg": {
+    "servingSize": "1 egg",
+    "calories": 78,
+    "protein": 6,
+    "carbs": 1,
+    "fat": 5
+  },
+  "scrambled egg": {
+    "servingSize": "1/2 cup",
+    "calories": 160,
+    "protein": 12,
+    "carbs": 2,
+    "fat": 10
+  },
+  "grits": {
+    "servingSize": "4 oz",
+    "calories": 85,
+    "protein": 2,
+    "carbs": 19,
+    "fat": 1
+  },
+  "oatmeal": {
+    "servingSize": "4 oz",
+    "calories": 75,
+    "protein": 3,
+    "carbs": 15,
+    "fat": 2
+  },
+  "pork bacon": {
+    "servingSize": "2 strips",
+    "calories": 80,
+    "protein": 6,
+    "carbs": 1,
+    "fat": 6
+  },
+  "fried chicken and gravy biscuit": {
+    "servingSize": "1 sandwich",
+    "calories": 590,
+    "protein": 31,
+    "carbs": 55,
+    "fat": 37
+  },
+  "sausage links": {
+    "servingSize": "2 links",
+    "calories": 110,
+    "protein": 7,
+    "carbs": 1,
+    "fat": 9
+  },
+  "tofu scramble": {
+    "servingSize": "1/2 cup",
+    "calories": 130,
+    "protein": 10,
+    "carbs": 3,
+    "fat": 10
+  },
+  "biscuit gravy": {
+    "servingSize": "2 oz",
+    "calories": 65,
+    "protein": 2,
+    "carbs": 10,
+    "fat": 4
+  },
+  "blueberry pancakes": {
+    "servingSize": "1 pancake",
+    "calories": 140,
+    "protein": 4,
+    "carbs": 28,
+    "fat": 4
+  },
+  "sausage and gravy breakfast pizza": {
+    "servingSize": "1 slice",
+    "calories": 460,
+    "protein": 30,
+    "carbs": 35,
+    "fat": 35
+  },
+  "mixed berry smoothie": {
+    "servingSize": "7.5 oz",
+    "calories": 220,
+    "protein": 6,
+    "carbs": 53,
+    "fat": 2
+  },
+  "roasted broccoli and grape tomato": {
+    "servingSize": "1/2 cup",
+    "calories": 70,
+    "protein": 3,
+    "carbs": 6,
+    "fat": 5
+  },
+  "buffalo chicken casserole": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 25,
+    "carbs": 3,
+    "fat": 22
+  },
+  "quinoa pilaf": {
+    "servingSize": "1/2 cup",
+    "calories": 145,
+    "protein": 5,
+    "carbs": 23,
+    "fat": 5
+  },
+  "lemon pepper salmon": {
+    "servingSize": "4 oz piece",
+    "calories": 270,
+    "protein": 25,
+    "carbs": 0,
+    "fat": 19
+  },
+  "gyros chicken": {
+    "servingSize": "1 sandwich",
+    "calories": 400,
+    "protein": 38,
+    "carbs": 40,
+    "fat": 15
+  },
+  "general tso chicken": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 20,
+    "carbs": 25,
+    "fat": 15
+  },
+  "chili oil": {
+    "servingSize": "1 Tbsp",
+    "calories": 120,
+    "protein": 0,
+    "carbs": 0,
+    "fat": 14
+  },
+  "steamed white rice": {
+    "servingSize": "1/3 cup",
+    "calories": 80,
+    "protein": 2,
+    "carbs": 15,
+    "fat": 1
+  },
+  "sriracha chili sauce": {
+    "servingSize": "1 oz",
+    "calories": 20,
+    "protein": 0,
+    "carbs": 5,
+    "fat": 0
+  },
+  "sweet chili sauce": {
+    "servingSize": "1 oz",
+    "calories": 40,
+    "protein": 0,
+    "carbs": 10,
+    "fat": 0
+  },
+  "gluten free soy sauce": {
+    "servingSize": "1 oz",
+    "calories": 15,
+    "protein": 2,
+    "carbs": 2,
+    "fat": 0
+  },
+  "garlic vegetable stir fry": {
+    "servingSize": "4 oz",
+    "calories": 100,
+    "protein": 3,
+    "carbs": 12,
+    "fat": 7
+  },
+  "beef broccoli stir fry": {
+    "servingSize": "4 oz",
+    "calories": 200,
+    "protein": 16,
+    "carbs": 10,
+    "fat": 11
+  },
+  "mashed potatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 90,
+    "protein": 2,
+    "carbs": 20,
+    "fat": 0
+  },
+  "steamed mixed vegetables": {
+    "servingSize": "1/2 cup",
+    "calories": 120,
+    "protein": 4,
+    "carbs": 19,
+    "fat": 3
+  },
+  "herb roasted chicken tenders": {
+    "servingSize": "1 piece",
+    "calories": 90,
+    "protein": 14,
+    "carbs": 0,
+    "fat": 5
+  },
+  "kielbasa and peppers": {
+    "servingSize": "3 chunks",
+    "calories": 330,
+    "protein": 14,
+    "carbs": 10,
+    "fat": 30
+  },
+  "lentils": {
+    "servingSize": "1/2 cup",
+    "calories": 115,
+    "protein": 9,
+    "carbs": 20,
+    "fat": 1
+  },
+  "roasted butternut squash": {
+    "servingSize": "1 oz",
+    "calories": 35,
+    "protein": 1,
+    "carbs": 6,
+    "fat": 1
+  },
+  "sausage pizza": {
+    "servingSize": "1 slice",
+    "calories": 310,
+    "protein": 16,
+    "carbs": 33,
+    "fat": 14
+  },
+  "vegetarian taco pizza": {
+    "servingSize": "1 slice",
+    "calories": 330,
+    "protein": 15,
+    "carbs": 39,
+    "fat": 15
+  },
+  "cilantro lime rice": {
+    "servingSize": "1/2 cup",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 22,
+    "fat": 0
+  },
+  "lentil tacos": {
+    "servingSize": "1/4 cup",
+    "calories": 80,
+    "protein": 5,
+    "carbs": 12,
+    "fat": 1
+  },
+  "corn and red peppers": {
+    "servingSize": "2.5 oz",
+    "calories": 70,
+    "protein": 2,
+    "carbs": 11,
+    "fat": 3
+  },
+  "squash and pepper medley": {
+    "servingSize": "1 cup",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 11,
+    "fat": 7
+  },
+  "potato salad": {
+    "servingSize": "3 oz",
+    "calories": 180,
+    "protein": 2,
+    "carbs": 20,
+    "fat": 12
+  },
+  "chicken dumpling soup": {
+    "servingSize": "6 oz",
+    "calories": 120,
+    "protein": 6,
+    "carbs": 12,
+    "fat": 5
+  },
+  "garden vegetable soup": {
+    "servingSize": "8 oz",
+    "calories": 80,
+    "protein": 3,
+    "carbs": 15,
+    "fat": 1
+  },
+  "southwestern tofu scramble": {
+    "servingSize": "1/2 cup",
+    "calories": 100,
+    "protein": 10,
+    "carbs": 5,
+    "fat": 5
+  },
+  "turkey sausage links": {
+    "servingSize": "2 links",
+    "calories": 67,
+    "protein": 8,
+    "carbs": 1,
+    "fat": 4
+  },
+  "hashbrowns": {
+    "servingSize": "1 triangle",
+    "calories": 110,
+    "protein": 2,
+    "carbs": 14,
+    "fat": 7
+  },
+  "buttermilk pancakes": {
+    "servingSize": "1 pancake",
+    "calories": 130,
+    "protein": 4,
+    "carbs": 25,
+    "fat": 3
+  },
+  "bacon egg muffin sandwich": {
+    "servingSize": "1 sandwich",
+    "calories": 375,
+    "protein": 21,
+    "carbs": 30,
+    "fat": 21
+  },
+  "breakfast beef sausage pizza": {
+    "servingSize": "1 slice",
+    "calories": 430,
+    "protein": 26,
+    "carbs": 29,
+    "fat": 26
+  },
+  "peach blueberry smoothie": {
+    "servingSize": "7.5 oz",
+    "calories": 190,
+    "protein": 3,
+    "carbs": 48,
+    "fat": 1
+  },
+  "strawberry banana smoothie": {
+    "servingSize": "20 oz",
+    "calories": 435,
+    "protein": 7,
+    "carbs": 111,
+    "fat": 1
+  },
+  "chocolate milk": {
+    "servingSize": "8 fl oz",
+    "calories": 190,
+    "protein": 8,
+    "carbs": 28,
+    "fat": 5
+  },
+  "hot chocolate": {
+    "servingSize": "8 fl oz",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 3
+  },
+  "tofu (raw)": {
+    "servingSize": "1 cup",
+    "calories": 140,
+    "protein": 15,
+    "carbs": 4,
+    "fat": 9
+  },
+  "garbanzo beans": {
+    "servingSize": "1 cup",
+    "calories": 269,
+    "protein": 15,
+    "carbs": 45,
+    "fat": 4
+  },
+  "cherry tomatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 18,
+    "protein": 1,
+    "carbs": 4,
+    "fat": 0
+  },
+  "shredded cheese": {
+    "servingSize": "1 tbsp",
+    "calories": 35,
+    "protein": 3,
+    "carbs": 1,
+    "fat": 3
+  },
+  "olives": {
+    "servingSize": "1 tbsp",
+    "calories": 20,
+    "protein": 0,
+    "carbs": 1,
+    "fat": 2
+  },
+  "fried chicken": {
+    "servingSize": "2 pieces",
+    "calories": 500,
+    "protein": 45,
+    "carbs": 20,
+    "fat": 35
+  },
+  "collard greens": {
+    "servingSize": "1/2 cup",
+    "calories": 60,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 4
+  },
+  "cornbread": {
+    "servingSize": "1 piece",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 30,
+    "fat": 8
+  },
+  "mac and cheese": {
+    "servingSize": "1 cup",
+    "calories": 400,
+    "protein": 18,
+    "carbs": 45,
+    "fat": 25
+  },
+  "bbq pork ribs w/ sweet sauce": {
+    "servingSize": "3 ribs",
+    "calories": 700,
+    "protein": 45,
+    "carbs": 25,
+    "fat": 50
+  },
+  "tuna melt": {
+    "servingSize": "1/2 sandwich",
+    "calories": 350,
+    "protein": 22,
+    "carbs": 30,
+    "fat": 20
+  },
+  "turkey burger": {
+    "servingSize": "1 patty",
+    "calories": 350,
+    "protein": 35,
+    "carbs": 2,
+    "fat": 25
+  },
+  "twister fries": {
+    "servingSize": "4 oz",
+    "calories": 350,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 20
+  },
+  "rice and pigeon peas": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 6,
+    "carbs": 35,
+    "fat": 7
+  },
+  "beef patties": {
+    "servingSize": "1 piece",
+    "calories": 400,
+    "protein": 18,
+    "carbs": 35,
+    "fat": 25
+  },
+  "fried cabbage": {
+    "servingSize": "4 oz",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 7
+  },
+  "jerk chicken": {
+    "servingSize": "1 piece",
+    "calories": 350,
+    "protein": 35,
+    "carbs": 8,
+    "fat": 25
+  },
+  "pineapple salsa": {
+    "servingSize": "1/4 cup",
+    "calories": 60,
+    "protein": 1,
+    "carbs": 12,
+    "fat": 4
+  },
+  "plantains": {
+    "servingSize": "1 piece",
+    "calories": 180,
+    "protein": 1,
+    "carbs": 30,
+    "fat": 10
+  },
+  "golden rice": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 6
+  },
+  "refried beans": {
+    "servingSize": "1/4 cup",
+    "calories": 120,
+    "protein": 6,
+    "carbs": 20,
+    "fat": 5
+  },
+  "cilantro corn": {
+    "servingSize": "1/2 cup",
+    "calories": 120,
+    "protein": 3,
+    "carbs": 20,
+    "fat": 6
+  },
+  "pork carnitas": {
+    "servingSize": "3 oz",
+    "calories": 300,
+    "protein": 25,
+    "carbs": 7,
+    "fat": 20
+  },
+  "4 cheese alfredo pizza": {
+    "servingSize": "1 slice",
+    "calories": 480,
+    "protein": 22,
+    "carbs": 40,
+    "fat": 35
+  },
+  "spinach and feta thin crust pizza": {
+    "servingSize": "1 slice",
+    "calories": 300,
+    "protein": 15,
+    "carbs": 30,
+    "fat": 14
+  },
+  "roasted carrots and mushrooms": {
+    "servingSize": "2.5 oz",
+    "calories": 75,
+    "protein": 1,
+    "carbs": 10,
+    "fat": 5
+  },
+  "sauteed green beans and garlic": {
+    "servingSize": "1/2 cup",
+    "calories": 75,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 5
+  },
+  "rotini pasta salad": {
+    "servingSize": "3 oz",
+    "calories": 180,
+    "protein": 4,
+    "carbs": 25,
+    "fat": 10
+  },
+  "clam chowder soup": {
+    "servingSize": "1 cup",
+    "calories": 300,
+    "protein": 12,
+    "carbs": 25,
+    "fat": 20
+  },
+  "creamy potato soup": {
+    "servingSize": "1 cup",
+    "calories": 300,
+    "protein": 10,
+    "carbs": 30,
+    "fat": 20
+  },
+  "garlic mushrooms and green beans": {
+    "servingSize": "1/2 cup",
+    "calories": 75,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 5
+  },
+  "spicy tomato sauce": {
+    "servingSize": "1 Tbsp",
+    "calories": 15,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 1
+  },
+  "chicken ranch casserole": {
+    "servingSize": "1/2 cup",
+    "calories": 250,
+    "protein": 18,
+    "carbs": 22,
+    "fat": 18
+  },
+  "baked catfish": {
+    "servingSize": "4 oz piece",
+    "calories": 170,
+    "protein": 22,
+    "carbs": 0,
+    "fat": 8
+  },
+  "steamed beans and carrots": {
+    "servingSize": "1/2 cup",
+    "calories": 120,
+    "protein": 6,
+    "carbs": 18,
+    "fat": 7
+  },
+  "vegan ramen broth": {
+    "servingSize": "4 oz",
+    "calories": 15,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 1
+  },
+  "basil chicken thigh nam pla": {
+    "servingSize": "1 thigh",
+    "calories": 280,
+    "protein": 28,
+    "carbs": 8,
+    "fat": 18
+  },
+  "corn": {
+    "servingSize": "1/2 cup",
+    "calories": 70,
+    "protein": 2,
+    "carbs": 16,
+    "fat": 1
+  },
+  "edamame": {
+    "servingSize": "1/2 cup",
+    "calories": 95,
+    "protein": 9,
+    "carbs": 9,
+    "fat": 4
+  },
+  "chopped cilantro": {
+    "servingSize": "1 oz",
+    "calories": 8,
+    "protein": 1,
+    "carbs": 1,
+    "fat": 0
+  },
+  "green onions": {
+    "servingSize": "1 Tbsp",
+    "calories": 5,
+    "protein": 0,
+    "carbs": 1,
+    "fat": 0
+  },
+  "ramen noodle with sesame oil": {
+    "servingSize": "2 oz",
+    "calories": 110,
+    "protein": 3,
+    "carbs": 18,
+    "fat": 3
+  },
+  "sliced egg": {
+    "servingSize": "1 piece",
+    "calories": 75,
+    "protein": 6,
+    "carbs": 1,
+    "fat": 5
+  },
+  "lemon ginger tofu": {
+    "servingSize": "2.5 oz",
+    "calories": 65,
+    "protein": 7,
+    "carbs": 4,
+    "fat": 3
+  },
+  "broth, pork ramen": {
+    "servingSize": "4 oz",
+    "calories": 45,
+    "protein": 4,
+    "carbs": 4,
+    "fat": 3
+  },
+  "sriracha agave tofu": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 11,
+    "carbs": 12,
+    "fat": 10
+  },
+  "jerk eggplant": {
+    "servingSize": "4 oz",
+    "calories": 70,
+    "protein": 1,
+    "carbs": 12,
+    "fat": 2
+  },
+  "brussel sprout, roasted": {
+    "servingSize": "4 oz",
+    "calories": 120,
+    "protein": 3,
+    "carbs": 9,
+    "fat": 8
+  },
+  "casserole, potato, bacon, egg": {
+    "servingSize": "1 serving",
+    "calories": 400,
+    "protein": 22,
+    "carbs": 30,
+    "fat": 25
+  },
+  "cinnamon raisin french toast": {
+    "servingSize": "1 slice",
+    "calories": 220,
+    "protein": 9,
+    "carbs": 40,
+    "fat": 6
+  },
+  "chicken sausage breakfast patties": {
+    "servingSize": "2 patties",
+    "calories": 220,
+    "protein": 22,
+    "carbs": 3,
+    "fat": 14
+  },
+  "tofu spinach chickpea scramble": {
+    "servingSize": "1/2 cup",
+    "calories": 300,
+    "protein": 18,
+    "carbs": 28,
+    "fat": 20
+  },
+  "home fries": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 2,
+    "carbs": 22,
+    "fat": 10
+  },
+  "sausage egg cheese donut sandwich": {
+    "servingSize": "1 sandwich",
+    "calories": 700,
+    "protein": 22,
+    "carbs": 45,
+    "fat": 55
+  },
+  "bacon egg and cheese pizza": {
+    "servingSize": "1 slice",
+    "calories": 420,
+    "protein": 18,
+    "carbs": 35,
+    "fat": 28
+  },
+  "honeydew melon": {
+    "servingSize": "1 cup",
+    "calories": 65,
+    "protein": 1,
+    "carbs": 16,
+    "fat": 0
+  },
+  "cantaloupe (musk melon)": {
+    "servingSize": "1 cup",
+    "calories": 55,
+    "protein": 1,
+    "carbs": 13,
+    "fat": 0
+  },
+  "granola": {
+    "servingSize": "1 cup",
+    "calories": 450,
+    "protein": 12,
+    "carbs": 65,
+    "fat": 20
+  },
+  "potatoes denver": {
+    "servingSize": "6 oz",
+    "calories": 285,
+    "protein": 17,
+    "carbs": 42,
+    "fat": 9
+  },
+  "ham and egg muffin": {
+    "servingSize": "1 sandwich",
+    "calories": 395,
+    "protein": 23,
+    "carbs": 31,
+    "fat": 20
+  },
+  "pork sausage patties": {
+    "servingSize": "2 patties",
+    "calories": 200,
+    "protein": 12,
+    "carbs": 0,
+    "fat": 16
+  },
+  "zucchini potato chili pepper scramble": {
+    "servingSize": "1/2 cup",
+    "calories": 170,
+    "protein": 6,
+    "carbs": 15,
+    "fat": 10
+  },
+  "spinach and feta strata": {
+    "servingSize": "4x8 inch square",
+    "calories": 505,
+    "protein": 28,
+    "carbs": 27,
+    "fat": 30
+  },
+  "french toast": {
+    "servingSize": "2.5 oz",
+    "calories": 180,
+    "protein": 6,
+    "carbs": 25,
+    "fat": 6
+  },
+  "pepperoni breakfast pizza": {
+    "servingSize": "1/8 pizza",
+    "calories": 525,
+    "protein": 24,
+    "carbs": 32,
+    "fat": 36
+  },
+  "pineapple smoothie": {
+    "servingSize": "7.5 oz",
+    "calories": 195,
+    "protein": 8,
+    "carbs": 42,
+    "fat": 1
+  },
+  "southern style green beans with bacon": {
+    "servingSize": "1/2 cup",
+    "calories": 60,
+    "protein": 4,
+    "carbs": 5,
+    "fat": 4
+  },
+  "cajun potato rounds": {
+    "servingSize": "1/2 cup",
+    "calories": 180,
+    "protein": 3,
+    "carbs": 22,
+    "fat": 10
+  },
+  "turkey noodle casserole": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 18,
+    "carbs": 30,
+    "fat": 20
+  },
+  "pulled pork": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 30,
+    "carbs": 10,
+    "fat": 20
+  },
+  "kielbasa": {
+    "servingSize": "1/2 cup",
+    "calories": 300,
+    "protein": 18,
+    "carbs": 8,
+    "fat": 25
+  },
+  "sliced white hoagie roll": {
+    "servingSize": "1 piece",
+    "calories": 300,
+    "protein": 10,
+    "carbs": 55,
+    "fat": 4
+  },
+  "turkey pepperjack grilled cheese": {
+    "servingSize": "1 sandwich",
+    "calories": 650,
+    "protein": 38,
+    "carbs": 35,
+    "fat": 35
+  },
+  "blackened beef": {
+    "servingSize": "3 slices",
+    "calories": 250,
+    "protein": 30,
+    "carbs": 1,
+    "fat": 15
+  },
+  "herb baked chicken drumsticks": {
+    "servingSize": "1 drumstick",
+    "calories": 220,
+    "protein": 22,
+    "carbs": 4,
+    "fat": 15
+  },
+  "steamed potatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 110,
+    "protein": 2,
+    "carbs": 18,
+    "fat": 3
+  },
+  "garlic thyme roasted acorn squash": {
+    "servingSize": "1 wedge",
+    "calories": 100,
+    "protein": 2,
+    "carbs": 15,
+    "fat": 4
+  },
+  "chicken bacon ranch pizza": {
+    "servingSize": "1 slice",
+    "calories": 430,
+    "protein": 25,
+    "carbs": 30,
+    "fat": 28
+  },
+  "margherita pizza": {
+    "servingSize": "1 slice",
+    "calories": 290,
+    "protein": 15,
+    "carbs": 30,
+    "fat": 12
+  },
+  "cauliflower and chickpea mole": {
+    "servingSize": "1 scoop",
+    "calories": 180,
+    "protein": 6,
+    "carbs": 22,
+    "fat": 8
+  },
+  "red beans": {
+    "servingSize": "1 cup",
+    "calories": 230,
+    "protein": 16,
+    "carbs": 42,
+    "fat": 1
+  },
+  "broccoli, carrots and cauliflower": {
+    "servingSize": "1/2 cup",
+    "calories": 100,
+    "protein": 4,
+    "carbs": 15,
+    "fat": 4
+  },
+  "zucchini creole": {
+    "servingSize": "1/2 cup",
+    "calories": 150,
+    "protein": 6,
+    "carbs": 12,
+    "fat": 10
+  },
+  "mixed fruit salad": {
+    "servingSize": "1 oz",
+    "calories": 25,
+    "protein": 0,
+    "carbs": 6,
+    "fat": 0
+  },
+  "chicken noodle soup": {
+    "servingSize": "8 oz",
+    "calories": 100,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 3
+  },
+  "mediterranean vegetable soup": {
+    "servingSize": "8 oz",
+    "calories": 130,
+    "protein": 6,
+    "carbs": 20,
+    "fat": 4
+  },
+  "broccoli and roasted peppers": {
+    "servingSize": "1/2 cup",
+    "calories": 60,
+    "protein": 2,
+    "carbs": 6,
+    "fat": 3
+  },
+  "alfredo sauce": {
+    "servingSize": "4 oz",
+    "calories": 300,
+    "protein": 8,
+    "carbs": 8,
+    "fat": 30
+  },
+  "kung pao chicken": {
+    "servingSize": "4 oz",
+    "calories": 280,
+    "protein": 32,
+    "carbs": 20,
+    "fat": 10
+  },
+  "steamed brown rice": {
+    "servingSize": "2/3 cup",
+    "calories": 190,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 5
+  },
+  "sweet and sour tofu": {
+    "servingSize": "4 oz",
+    "calories": 240,
+    "protein": 9,
+    "carbs": 30,
+    "fat": 10
+  },
+  "steamed peas and carrots": {
+    "servingSize": "2 oz",
+    "calories": 45,
+    "protein": 2,
+    "carbs": 9,
+    "fat": 0
+  },
+  "sauteed eggplant and spinach": {
+    "servingSize": "1/2 cup",
+    "calories": 85,
+    "protein": 1,
+    "carbs": 6,
+    "fat": 7
+  },
+  "mashed sweet potatoes": {
+    "servingSize": "1 cup",
+    "calories": 220,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 7
+  },
+  "tofu swiss steak": {
+    "servingSize": "1 filet",
+    "calories": 210,
+    "protein": 11,
+    "carbs": 12,
+    "fat": 15
+  },
+  "broccoli, carrots, beans and peppers": {
+    "servingSize": "1/2 cup",
+    "calories": 35,
+    "protein": 2,
+    "carbs": 7,
+    "fat": 0
+  },
+  "riced cauliflower with tomato and basil": {
+    "servingSize": "1/2 cup",
+    "calories": 15,
+    "protein": 1,
+    "carbs": 3,
+    "fat": 0
+  },
+  "cajun pork chop": {
+    "servingSize": "1 piece",
+    "calories": 230,
+    "protein": 32,
+    "carbs": 0,
+    "fat": 10
+  },
+  "lemon garlic potatoes": {
+    "servingSize": "1/2 cup",
+    "calories": 125,
+    "protein": 2,
+    "carbs": 15,
+    "fat": 7
+  },
+  "shrimp, garlic": {
+    "servingSize": "1 cup",
+    "calories": 210,
+    "protein": 28,
+    "carbs": 0,
+    "fat": 10
+  },
+  "zucchini peppers and edamame": {
+    "servingSize": "1/2 cup",
+    "calories": 95,
+    "protein": 5,
+    "carbs": 9,
+    "fat": 6
+  },
+  "chicken cacciatore": {
+    "servingSize": "1 piece (0.25 lb)",
+    "calories": 380,
+    "protein": 30,
+    "carbs": 15,
+    "fat": 30
+  },
+  "broccoli spears": {
+    "servingSize": "1/2 cup",
+    "calories": 35,
+    "protein": 1,
+    "carbs": 3,
+    "fat": 3
+  },
+  "garlic basil carrots": {
+    "servingSize": "1/2 cup",
+    "calories": 70,
+    "protein": 1,
+    "carbs": 13,
+    "fat": 2
+  },
+  "sweet potato puff": {
+    "servingSize": "4 oz",
+    "calories": 200,
+    "protein": 3,
+    "carbs": 25,
+    "fat": 11
+  },
+  "salisbury steak": {
+    "servingSize": "1 lb",
+    "calories": 860,
+    "protein": 90,
+    "carbs": 15,
+    "fat": 55
+  },
+  "aloo chole": {
+    "servingSize": "4 oz",
+    "calories": 200,
+    "protein": 7,
+    "carbs": 25,
+    "fat": 7
+  },
+  "butter chicken": {
+    "servingSize": "3.7 oz",
+    "calories": 230,
+    "protein": 19,
+    "carbs": 7,
+    "fat": 16
+  },
+  "hot chutney powder": {
+    "servingSize": "1 tsp",
+    "calories": 5,
+    "protein": 0,
+    "carbs": 1,
+    "fat": 0
+  },
+  "vegetable samosas": {
+    "servingSize": "2 samosas",
+    "calories": 240,
+    "protein": 10,
+    "carbs": 36,
+    "fat": 16
+  },
+  "peas pulao": {
+    "servingSize": "4 oz",
+    "calories": 130,
+    "protein": 4,
+    "carbs": 27,
+    "fat": 1
+  },
+  "whole wheat roti": {
+    "servingSize": "1 oz",
+    "calories": 70,
+    "protein": 3,
+    "carbs": 13,
+    "fat": 1
+  },
+  "gardein plant meatball": {
+    "servingSize": "3 meatballs",
+    "calories": 140,
+    "protein": 16,
+    "carbs": 10,
+    "fat": 7
+  },
+  "steamed basmati rice": {
+    "servingSize": "2/3 cup",
+    "calories": 160,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 1
+  },
+  "steamed beans, carrots, cauliflower": {
+    "servingSize": "1/2 cup",
+    "calories": 30,
+    "protein": 2,
+    "carbs": 6,
+    "fat": 0
+  },
+  "pesto alfredo": {
+    "servingSize": "3 oz",
+    "calories": 270,
+    "protein": 5,
+    "carbs": 6,
+    "fat": 26
+  },
+  "rigatoni pasta": {
+    "servingSize": "1 cup",
+    "calories": 220,
+    "protein": 7,
+    "carbs": 42,
+    "fat": 2
+  },
+  "vegetable lasagna": {
+    "servingSize": "1 piece (4x6 inch)",
+    "calories": 320,
+    "protein": 23,
+    "carbs": 45,
+    "fat": 18
+  }
+}

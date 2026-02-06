@@ -43,5 +43,4 @@ yarn-error.log*
 user-preferences.json
 user-food-ratings.json
 email-subscribers.json
-nutrition-cache.json
 next-env.d.ts
