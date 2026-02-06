@@ -38,4 +38,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# user data
+user-preferences.json
+user-food-ratings.json
+email-subscribers.json
+nutrition-cache.json
 next-env.d.ts
