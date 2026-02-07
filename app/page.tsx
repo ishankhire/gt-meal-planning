@@ -422,7 +422,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-8 relative">
+        <header className="text-center mb-8 relative pt-12 md:pt-0">
           {/* Auth button */}
           <div className="absolute right-0 top-0">
             {session?.user ? (
@@ -453,20 +453,13 @@ export default function Home() {
             )}
           </div>
 
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white mb-2">
-            NAV Meal Planner
-          </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            North Avenue Dining Hall - Georgia Tech
-          </p>
-          <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1">
-            {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
+          <div className="flex items-center justify-center gap-2 md:gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/cute-bee.svg" alt="Nav Bee Logo" className="w-8 h-8 md:w-12 md:h-12" />
+            <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">
+              Nav Meal Planner
+            </h1>
+          </div>
         </header>
 
         <div className="mb-6 flex flex-col md:flex-row gap-4">
@@ -831,70 +824,77 @@ export default function Home() {
                   <span className="text-xs text-zinc-500">Loading nutrition data...</span>
                 )}
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-1.5 md:gap-2 max-w-2xl md:max-w-none mx-auto">
                 {foodItems.map((item) => {
                   const est = getEstimate(item.food!);
                   const rating = getFoodRating(item.food!.name);
                   return (
                     <div
                       key={item.id}
-                      className={`rounded-lg p-3 border transition-colors ${
+                      className={`rounded-lg p-2 md:p-3 border transition-colors ${
                         rating === 'dislike'
                           ? 'bg-zinc-100 dark:bg-zinc-850 border-zinc-200 dark:border-zinc-700 opacity-60'
                           : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500'
                       }`}
                     >
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
+                      <div className="flex justify-between items-center gap-2">
+                        <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
                           {/* Thumbs up / down buttons */}
                           <button
                             onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'like'); }}
-                            className={`p-1 rounded transition-colors ${
+                            className={`p-0.5 md:p-1 rounded transition-colors shrink-0 ${
                               rating === 'like'
                                 ? 'text-blue-500'
                                 : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'
                             }`}
                             title="Like this item"
                           >
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M2 10.5a1.5 1.5 0 1 1 3 0v6a1.5 1.5 0 0 1-3 0v-6ZM6 10.333v5.43a2 2 0 0 0 1.106 1.79l.05.025A4 4 0 0 0 8.943 18h5.416a2 2 0 0 0 1.962-1.608l1.2-6A2 2 0 0 0 15.56 8H12V4a2 2 0 0 0-2-2 1 1 0 0 0-1 1v.667a4 4 0 0 1-.8 2.4L6.8 7.933a4 4 0 0 0-.8 2.4Z" />
                             </svg>
                           </button>
                           <button
                             onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'dislike'); }}
-                            className={`p-1 rounded transition-colors ${
+                            className={`p-0.5 md:p-1 rounded transition-colors shrink-0 ${
                               rating === 'dislike'
                                 ? 'text-red-500'
                                 : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'
                             }`}
                             title="Dislike this item"
                           >
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M18 9.5a1.5 1.5 0 1 1-3 0v-6a1.5 1.5 0 0 1 3 0v6ZM14 9.667V4.236a2 2 0 0 0-1.106-1.789l-.05-.025A4 4 0 0 0 11.057 2H5.64a2 2 0 0 0-1.962 1.608l-1.2 6A2 2 0 0 0 4.44 12H8v4a2 2 0 0 0 2 2 1 1 0 0 0 1-1v-.667a4 4 0 0 1 .8-2.4l1.4-1.867a4 4 0 0 0 .8-2.4Z" />
                             </svg>
                           </button>
                           <span
-                            className="font-medium text-zinc-900 dark:text-white"
+                            className={`text-sm md:text-base font-medium truncate ${
+                              rating === 'dislike'
+                                ? 'text-zinc-500 dark:text-zinc-400'
+                                : 'text-zinc-900 dark:text-white'
+                            }`}
                           >
                             {item.food?.name}
                           </span>
-                          {est && (
-                            <span className="text-xs text-zinc-400">
-                              ({est.servingSize})
-                            </span>
-                          )}
                         </div>
                         {est ? (
-                          <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-                            <span>{est.calories} cal</span>
-                            <span>{est.protein}g P</span>
-                            <span>{est.carbs}g C</span>
-                            <span>{est.fat}g F</span>
+                          <div className="flex items-center gap-1 shrink-0">
+                            <span className="text-xs text-zinc-400 whitespace-nowrap hidden md:inline">({est.servingSize})</span>
+                            <div className="flex gap-1.5 md:gap-3 text-xs md:text-sm text-zinc-600 dark:text-zinc-400">
+                              <span className="text-center"><span className="block md:inline font-medium">{est.calories}</span><span className="block md:inline md:ml-0.5">cal</span></span>
+                              <span className="text-center"><span className="block md:inline font-medium">{est.protein}g</span><span className="block md:inline md:ml-0.5">P</span></span>
+                              <span className="text-center"><span className="block md:inline font-medium">{est.carbs}g</span><span className="block md:inline md:ml-0.5">C</span></span>
+                              <span className="text-center"><span className="block md:inline font-medium">{est.fat}g</span><span className="block md:inline md:ml-0.5">F</span></span>
+                            </div>
                           </div>
                         ) : (
                           <span className="text-xs text-zinc-400">...</span>
                         )}
                       </div>
+                      {est && (
+                        <div className="md:hidden mt-0.5 ml-9 text-xs text-zinc-400 whitespace-nowrap">
+                          {est.servingSize}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
