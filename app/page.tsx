@@ -512,7 +512,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-sky-300 py-8 px-4">
+    <div className="min-h-screen bg-sky-100 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-8 relative pt-12 md:pt-0">
           {/* Auth button */}
