@@ -478,7 +478,7 @@ export default function Home() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -489,7 +489,7 @@ export default function Home() {
               id="meal-type"
               value={mealType}
               onChange={(e) => setMealType(e.target.value as MealType)}
-              className="w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
@@ -837,7 +837,7 @@ export default function Home() {
                   return (
                     <div
                       key={item.id}
-                      className={`rounded-lg p-2 md:p-3 border transition-colors ${
+                      className={`rounded-lg p-2 md:p-3 border transition-colors overflow-hidden ${
                         rating === 'dislike'
                           ? 'bg-zinc-100 dark:bg-zinc-850 border-zinc-200 dark:border-zinc-700 opacity-60'
                           : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500'
@@ -925,13 +925,13 @@ export default function Home() {
                         {/* Content column: two lines */}
                         <div className="min-w-0 flex-1">
                           {/* Line 1: Name + serving size */}
-                          <div className="flex items-baseline gap-1.5">
+                          <div className="flex items-baseline gap-1.5 overflow-hidden">
                             <span className={`text-sm font-medium truncate ${
                               rating === 'dislike' ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-900 dark:text-white'
                             }`}>
                               {item.food?.name}
                             </span>
-                            {est && <span className="text-xs text-zinc-400 whitespace-nowrap shrink-0">{est.servingSize}</span>}
+                            {est && <span className="text-xs text-zinc-400 whitespace-nowrap">{est.servingSize}</span>}
                           </div>
                           {/* Line 2: Nutrition stats */}
                           {est ? (
