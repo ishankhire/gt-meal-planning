@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
 Also assign one or more nutritional category tags from this list based on the item's nutritional profile:
 - "High calorie"
 - "Low calorie"
-- "Protein rich" — have a lower threshold for "high protein" vegetarian/vegan items
+- "Protein rich" — slightly prioritize and have a lower threshold for "high protein" vegetarian/vegan items
 - "Low fat"
 - "Nutrient-rich"
 
