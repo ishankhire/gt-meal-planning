@@ -63,11 +63,11 @@ export async function POST(request: NextRequest) {
     const prompt = `For each food item below from a college dining hall, estimate its nutrition for the given serving size. The serving size comes from the dining hall's own data. Use the ingredients list (when provided) to make a more accurate estimate. Return a JSON array with one object per item in the same order.
 
 Also assign one or more nutritional category tags from this list based on the item's nutritional profile:
-- "High calorie" — calorie-dense or heavy items
-- "Low calorie" — light, low-calorie items
-- "Protein rich" — good protein source relative to calories
-- "Low fat" — very low in fat
-- "Nutrient-rich" — well-balanced macronutrient profile
+- "High calorie"
+- "Low calorie"
+- "Protein rich" — have a lower threshold for "high protein" vegetarian/vegan items
+- "Low fat"
+- "Nutrient-rich"
 
 Include a "tags" array in each object. An item can have multiple tags or none.
 
