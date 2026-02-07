@@ -3,11 +3,11 @@ import { GoogleGenAI, Type } from '@google/genai';
 import { getNutritionFromCache, setNutritionCache, type NutritionData } from '@/app/lib/db';
 
 interface FoodEstimate {
-  servingSize: string;
   calories: number;
   protein: number;
   carbs: number;
   fat: number;
+  tags: string[];
 }
 
 interface FoodInput {
@@ -62,7 +62,14 @@ export async function POST(request: NextRequest) {
 
     const prompt = `For each food item below from a college dining hall, estimate its nutrition for the given serving size. The serving size comes from the dining hall's own data. Use the ingredients list (when provided) to make a more accurate estimate. Return a JSON array with one object per item in the same order.
 
-For the servingSize field, convert the dining hall serving size into a cleaner human-readable format (e.g. "0.5 cup" → "1/2 cup", "1 ea" → "1 piece", "0.12 round" → "1 slice", "2 strip" → "2 strips"). Keep it close to the original but readable.
+Also assign one or more nutritional category tags from this list based on the item's nutritional profile:
+- "High calorie" — calorie-dense or heavy items
+- "Low calorie" — light, low-calorie items
+- "Protein rich" — good protein source relative to calories
+- "Low fat" — very low in fat
+- "Nutrient-rich" — well-balanced macronutrient profile
+
+Include a "tags" array in each object. An item can have multiple tags or none.
 
 ${foodList}`;
 
@@ -79,13 +86,13 @@ ${foodList}`;
             items: {
               type: Type.OBJECT,
               properties: {
-                servingSize: { type: Type.STRING },
                 calories: { type: Type.NUMBER },
                 protein: { type: Type.NUMBER },
                 carbs: { type: Type.NUMBER },
                 fat: { type: Type.NUMBER },
+                tags: { type: Type.ARRAY, items: { type: Type.STRING } },
               },
-              required: ['servingSize', 'calories', 'protein', 'carbs', 'fat'],
+              required: ['calories', 'protein', 'carbs', 'fat', 'tags'],
             },
           },
         },
@@ -100,11 +107,11 @@ ${foodList}`;
         for (let i = 0; i < uncachedItems.length && i < estimates.length; i++) {
           const key = getCacheKey(uncachedItems[i].name);
           const estimate: NutritionData = {
-            servingSize: estimates[i].servingSize,
             calories: Math.round(estimates[i].calories),
             protein: Math.round(estimates[i].protein),
             carbs: Math.round(estimates[i].carbs),
             fat: Math.round(estimates[i].fat),
+            tags: estimates[i].tags || [],
           };
           results[key] = estimate;
 

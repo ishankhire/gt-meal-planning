@@ -193,19 +193,19 @@ async function migrateNutritionCache() {
     await prisma.nutritionCache.upsert({
       where: { foodName: foodName.toLowerCase() },
       update: {
-        servingSize: nutrition.servingSize,
         calories: nutrition.calories,
         protein: nutrition.protein,
         carbs: nutrition.carbs,
         fat: nutrition.fat,
+        tags: [],
       },
       create: {
         foodName: foodName.toLowerCase(),
-        servingSize: nutrition.servingSize,
         calories: nutrition.calories,
         protein: nutrition.protein,
         carbs: nutrition.carbs,
         fat: nutrition.fat,
+        tags: [],
       },
     });
 

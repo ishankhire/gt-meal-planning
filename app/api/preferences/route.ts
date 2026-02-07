@@ -13,6 +13,15 @@ interface UserPreferencesInput {
     vegetarian: boolean;
     vegan: boolean;
     eggless: boolean;
+    glutenFree: boolean;
+    noDairy: boolean;
+  };
+  nutritionalFilters?: {
+    highCalorie: boolean;
+    lowCalorie: boolean;
+    proteinRich: boolean;
+    lowFat: boolean;
+    nutrientRich: boolean;
   };
 }
 
@@ -50,6 +59,13 @@ export async function POST(request: NextRequest) {
     vegetarian: preferences.filters?.vegetarian ?? false,
     vegan: preferences.filters?.vegan ?? false,
     eggless: preferences.filters?.eggless ?? false,
+    glutenFree: preferences.filters?.glutenFree ?? false,
+    noDairy: preferences.filters?.noDairy ?? false,
+    highCalorie: preferences.nutritionalFilters?.highCalorie ?? false,
+    lowCalorie: preferences.nutritionalFilters?.lowCalorie ?? false,
+    proteinRich: preferences.nutritionalFilters?.proteinRich ?? false,
+    lowFat: preferences.nutritionalFilters?.lowFat ?? false,
+    nutrientRich: preferences.nutritionalFilters?.nutrientRich ?? false,
   });
 
   return NextResponse.json({ success: true });

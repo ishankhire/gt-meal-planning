@@ -43,6 +43,15 @@ model UserPreferences {
   vegetarian      Boolean  @default(false)
   vegan           Boolean  @default(false)
   eggless         Boolean  @default(false)
+  glutenFree      Boolean  @default(false)
+  noDairy         Boolean  @default(false)
+
+  // Nutritional filters
+  highCalorie     Boolean  @default(false)
+  lowCalorie      Boolean  @default(false)
+  proteinRich     Boolean  @default(false)
+  lowFat          Boolean  @default(false)
+  nutrientRich    Boolean  @default(false)
 
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -82,11 +91,11 @@ model NutritionCache {
   id          String   @id @default(cuid())
   foodName    String   @unique          // Lowercase food name as key
 
-  servingSize String
   calories    Int
   protein     Int
   carbs       Int
   fat         Int
+  tags        String[] @default([])
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

@@ -41,11 +41,11 @@ interface MenuData {
 }
 
 interface FoodEstimate {
-  servingSize: string;
   calories: number;
   protein: number;
   carbs: number;
   fat: number;
+  tags: string[];
 }
 
 interface RecommendedItem {
@@ -80,7 +80,18 @@ export default function Home() {
     vegetarian: false,
     vegan: false,
     eggless: false,
+    glutenFree: false,
+    noDairy: false,
   });
+  const [nutritionalFilters, setNutritionalFilters] = useState({
+    highCalorie: false,
+    lowCalorie: false,
+    proteinRich: false,
+    lowFat: false,
+    nutrientRich: false,
+  });
+  const [dietaryOpen, setDietaryOpen] = useState(true);
+  const [nutritionalOpen, setNutritionalOpen] = useState(false);
 
   // Gemini nutrition data for all items
   const [geminiData, setGeminiData] = useState<Record<string, FoodEstimate>>({});
@@ -123,10 +134,13 @@ export default function Home() {
       if (res.ok) {
         const data = await res.json();
         if (data.preferences) {
-          const { filters: savedFilters, ...goals } = data.preferences;
+          const { filters: savedFilters, nutritionalFilters: savedNutritional, ...goals } = data.preferences;
           setRecGoals(goals);
           if (savedFilters) {
             setFilters(savedFilters);
+          }
+          if (savedNutritional) {
+            setNutritionalFilters(savedNutritional);
           }
         }
       }
@@ -256,13 +270,13 @@ export default function Home() {
   };
 
   // Save preferences to server
-  const savePreferences = async (goals: typeof recGoals, currentFilters?: typeof filters) => {
+  const savePreferences = async (goals: typeof recGoals, currentFilters?: typeof filters, currentNutritional?: typeof nutritionalFilters) => {
     if (!session?.user) return;
     try {
       await fetch('/api/preferences', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ preferences: { ...goals, filters: currentFilters ?? filters } }),
+        body: JSON.stringify({ preferences: { ...goals, filters: currentFilters ?? filters, nutritionalFilters: currentNutritional ?? nutritionalFilters } }),
       });
     } catch (err) {
       console.error('Failed to save preferences:', err);
@@ -301,6 +315,30 @@ export default function Home() {
 
   const allFoodItems = getTodayMenu().filter(item => item.food && !item.is_section_title);
 
+  const passesAllFilters = (food: Food): boolean => {
+    // Dietary filters (AND exclusion)
+    if (filters.vegan && !hasIcon(food, 'Vegan')) return false;
+    if (filters.vegetarian && !hasIcon(food, 'Vegetarian') && !hasIcon(food, 'Vegan')) return false;
+    if (filters.eggless && hasIcon(food, 'Eggs Allergen')) return false;
+    if (filters.glutenFree && hasIcon(food, 'Gluten')) return false;
+    if (filters.noDairy && hasIcon(food, 'Milk')) return false;
+
+    // Nutritional filters (OR inclusion — match ANY selected tag)
+    const selectedTags: string[] = [];
+    if (nutritionalFilters.highCalorie) selectedTags.push('High calorie');
+    if (nutritionalFilters.lowCalorie) selectedTags.push('Low calorie');
+    if (nutritionalFilters.proteinRich) selectedTags.push('Protein rich');
+    if (nutritionalFilters.lowFat) selectedTags.push('Low fat');
+    if (nutritionalFilters.nutrientRich) selectedTags.push('Nutrient-rich');
+
+    if (selectedTags.length > 0) {
+      const est = geminiData[getCacheKey(food.name)];
+      if (!est) return false;
+      if (!est.tags.some(tag => selectedTags.includes(tag))) return false;
+    }
+    return true;
+  };
+
   // Group menu items by their section title (category)
   const groupedCategories: { category: string; items: MenuItem[] }[] = (() => {
     const menuItems = getTodayMenu();
@@ -313,15 +351,10 @@ export default function Home() {
         continue;
       }
       if (!item.food) continue;
-
-      // Apply dietary filters
-      const food = item.food;
-      if (filters.vegan && !hasIcon(food, 'Vegan')) continue;
-      if (filters.vegetarian && !hasIcon(food, 'Vegetarian') && !hasIcon(food, 'Vegan')) continue;
-      if (filters.eggless && hasIcon(food, 'Eggs Allergen')) continue;
+      if (!passesAllFilters(item.food)) continue;
 
       // Skip disliked items here — they go to a separate section
-      if (sortRatings[getCacheKey(food.name)] === 'dislike') continue;
+      if (sortRatings[getCacheKey(item.food.name)] === 'dislike') continue;
 
       let group = groups.find(g => g.category === currentCategory);
       if (!group) {
@@ -344,11 +377,8 @@ export default function Home() {
     const dislikedItems: MenuItem[] = [];
     for (const item of menuItems) {
       if (!item.food || item.is_section_title) continue;
-      const food = item.food;
-      if (filters.vegan && !hasIcon(food, 'Vegan')) continue;
-      if (filters.vegetarian && !hasIcon(food, 'Vegetarian') && !hasIcon(food, 'Vegan')) continue;
-      if (filters.eggless && hasIcon(food, 'Eggs Allergen')) continue;
-      if (sortRatings[getCacheKey(food.name)] === 'dislike') {
+      if (!passesAllFilters(item.food)) continue;
+      if (sortRatings[getCacheKey(item.food.name)] === 'dislike') {
         dislikedItems.push(item);
       }
     }
@@ -446,7 +476,7 @@ export default function Home() {
           protein: est?.protein ?? 0,
           carbs: est?.carbs ?? 0,
           fat: est?.fat ?? 0,
-          servingSize: est?.servingSize ?? '1 serving',
+          servingSize: getServingSize(food),
         };
       });
       const likedItems = eligibleItems
@@ -544,51 +574,79 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="mb-4">
+          <button
+            onClick={() => setDietaryOpen(!dietaryOpen)}
+            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2"
+          >
+            <span>Dietary Filters</span>
+            <svg className={`w-4 h-4 transition-transform ${dietaryOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          {dietaryOpen && (
+            <div className="flex flex-wrap gap-4">
+              {([
+                ['vegetarian', 'Vegetarian'],
+                ['vegan', 'Vegan'],
+                ['eggless', 'Eggless'],
+                ['glutenFree', 'Gluten-free'],
+                ['noDairy', 'No Dairy'],
+              ] as const).map(([key, label]) => (
+                <label key={key} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={filters[key]}
+                    onChange={(e) => {
+                      const newFilters = { ...filters, [key]: e.target.checked };
+                      setFilters(newFilters);
+                      savePreferences(recGoals, newFilters);
+                    }}
+                    className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
+                  />
+                  <span className="text-zinc-700 dark:text-zinc-300">{label}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="mb-6">
-          <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-            Dietary Filters
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.vegetarian}
-                onChange={(e) => {
-                  const newFilters = { ...filters, vegetarian: e.target.checked };
-                  setFilters(newFilters);
-                  savePreferences(recGoals, newFilters);
-                }}
-                className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
-              />
-              <span className="text-zinc-700 dark:text-zinc-300">Vegetarian</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.vegan}
-                onChange={(e) => {
-                  const newFilters = { ...filters, vegan: e.target.checked };
-                  setFilters(newFilters);
-                  savePreferences(recGoals, newFilters);
-                }}
-                className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
-              />
-              <span className="text-zinc-700 dark:text-zinc-300">Vegan</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.eggless}
-                onChange={(e) => {
-                  const newFilters = { ...filters, eggless: e.target.checked };
-                  setFilters(newFilters);
-                  savePreferences(recGoals, newFilters);
-                }}
-                className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
-              />
-              <span className="text-zinc-700 dark:text-zinc-300">Eggless</span>
-            </label>
-          </div>
+          <button
+            onClick={() => setNutritionalOpen(!nutritionalOpen)}
+            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2"
+          >
+            <span>Nutritional Filters</span>
+            <svg className={`w-4 h-4 transition-transform ${nutritionalOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          {nutritionalOpen && (
+            <div>
+              {loadingGemini && (
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-2">Loading nutrition data...</p>
+              )}
+              <div className="flex flex-wrap gap-4">
+                {([
+                  ['highCalorie', 'High Calorie'],
+                  ['lowCalorie', 'Low Calorie'],
+                  ['proteinRich', 'Protein Rich'],
+                  ['lowFat', 'Low Fat'],
+                  ['nutrientRich', 'Nutrient-rich'],
+                ] as const).map(([key, label]) => (
+                  <label key={key} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={nutritionalFilters[key]}
+                      onChange={(e) => {
+                        const newNutritional = { ...nutritionalFilters, [key]: e.target.checked };
+                        setNutritionalFilters(newNutritional);
+                        savePreferences(recGoals, filters, newNutritional);
+                      }}
+                      className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
+                    />
+                    <span className="text-zinc-700 dark:text-zinc-300">{label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Email Opt-In */}
@@ -933,7 +991,7 @@ export default function Home() {
                                 }`}>
                                   {item.food?.name}
                                 </span>
-                                {est && <span className="text-xs text-zinc-400 whitespace-nowrap">({est.servingSize})</span>}
+                                <span className="text-xs text-zinc-400 whitespace-nowrap">({getServingSize(item.food!)})</span>
                               </div>
                               {est ? (
                                 <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 shrink-0">
@@ -987,7 +1045,7 @@ export default function Home() {
                                   }`}>
                                     {item.food?.name}
                                   </span>
-                                  {est && <span className="text-xs text-zinc-400 whitespace-nowrap">{est.servingSize}</span>}
+                                  <span className="text-xs text-zinc-400 whitespace-nowrap">{getServingSize(item.food!)}</span>
                                 </div>
                                 {/* Line 2: Nutrition stats */}
                                 {est ? (

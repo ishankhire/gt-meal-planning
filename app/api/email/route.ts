@@ -83,7 +83,7 @@ async function getMenuWithNutrition(mealType: string, date: string) {
       protein: est?.protein ?? 0,
       carbs: est?.carbs ?? 0,
       fat: est?.fat ?? 0,
-      servingSize: est?.servingSize ?? item.servingSize,
+      servingSize: item.servingSize,
     };
   });
 }

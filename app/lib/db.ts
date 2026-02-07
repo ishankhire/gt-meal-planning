@@ -52,6 +52,13 @@ export interface UserPreferencesInput {
   vegetarian?: boolean;
   vegan?: boolean;
   eggless?: boolean;
+  glutenFree?: boolean;
+  noDairy?: boolean;
+  highCalorie?: boolean;
+  lowCalorie?: boolean;
+  proteinRich?: boolean;
+  lowFat?: boolean;
+  nutrientRich?: boolean;
 }
 
 export async function getUserPreferences(email: string): Promise<UserPreferences | null> {
@@ -90,6 +97,15 @@ export function preferencesToJson(prefs: UserPreferences | null) {
       vegetarian: prefs.vegetarian,
       vegan: prefs.vegan,
       eggless: prefs.eggless,
+      glutenFree: prefs.glutenFree,
+      noDairy: prefs.noDairy,
+    },
+    nutritionalFilters: {
+      highCalorie: prefs.highCalorie,
+      lowCalorie: prefs.lowCalorie,
+      proteinRich: prefs.proteinRich,
+      lowFat: prefs.lowFat,
+      nutrientRich: prefs.nutrientRich,
     },
   };
 }
@@ -201,11 +217,11 @@ export async function setEmailSubscription(email: string, optedIn: boolean): Pro
 // =============================================================================
 
 export interface NutritionData {
-  servingSize: string;
   calories: number;
   protein: number;
   carbs: number;
   fat: number;
+  tags: string[];
 }
 
 export async function getNutritionFromCache(foodName: string): Promise<NutritionData | null> {
@@ -217,11 +233,11 @@ export async function getNutritionFromCache(foodName: string): Promise<Nutrition
   if (!cached) return null;
 
   return {
-    servingSize: cached.servingSize,
     calories: cached.calories,
     protein: cached.protein,
     carbs: cached.carbs,
     fat: cached.fat,
+    tags: cached.tags,
   };
 }
 
@@ -235,11 +251,11 @@ export async function getNutritionBatch(foodNames: string[]): Promise<Map<string
   const result = new Map<string, NutritionData>();
   for (const item of cached) {
     result.set(item.foodName, {
-      servingSize: item.servingSize,
       calories: item.calories,
       protein: item.protein,
       carbs: item.carbs,
       fat: item.fat,
+      tags: item.tags,
     });
   }
   return result;
@@ -251,19 +267,19 @@ export async function setNutritionCache(foodName: string, nutrition: NutritionDa
   return prisma.nutritionCache.upsert({
     where: { foodName: normalizedName },
     update: {
-      servingSize: nutrition.servingSize,
       calories: nutrition.calories,
       protein: nutrition.protein,
       carbs: nutrition.carbs,
       fat: nutrition.fat,
+      tags: nutrition.tags,
     },
     create: {
       foodName: normalizedName,
-      servingSize: nutrition.servingSize,
       calories: nutrition.calories,
       protein: nutrition.protein,
       carbs: nutrition.carbs,
       fat: nutrition.fat,
+      tags: nutrition.tags,
     },
   });
 }
@@ -274,19 +290,19 @@ export async function setNutritionCacheBatch(items: Array<{ foodName: string; nu
       prisma.nutritionCache.upsert({
         where: { foodName: foodName.toLowerCase() },
         update: {
-          servingSize: nutrition.servingSize,
           calories: nutrition.calories,
           protein: nutrition.protein,
           carbs: nutrition.carbs,
           fat: nutrition.fat,
+          tags: nutrition.tags,
         },
         create: {
           foodName: foodName.toLowerCase(),
-          servingSize: nutrition.servingSize,
           calories: nutrition.calories,
           protein: nutrition.protein,
           carbs: nutrition.carbs,
           fat: nutrition.fat,
+          tags: nutrition.tags,
         },
       })
     )
@@ -300,11 +316,11 @@ export async function getAllNutritionCache(): Promise<Record<string, NutritionDa
   const result: Record<string, NutritionData> = {};
   for (const item of all) {
     result[item.foodName] = {
-      servingSize: item.servingSize,
       calories: item.calories,
       protein: item.protein,
       carbs: item.carbs,
       fat: item.fat,
+      tags: item.tags,
     };
   }
   return result;
