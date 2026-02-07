@@ -91,7 +91,7 @@ export default function Home() {
     lowFat: false,
     nutrientRich: false,
   });
-  const [dietaryOpen, setDietaryOpen] = useState(true);
+  const [dietaryOpen, setDietaryOpen] = useState(false);
   const [nutritionalOpen, setNutritionalOpen] = useState(false);
 
   // Gemini nutrition data for all items
@@ -126,6 +126,15 @@ export default function Home() {
   const [ratingsLoaded, setRatingsLoaded] = useState(false);
 
   const { data: session } = useSession();
+
+  // Open filter dropdowns by default on desktop
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    if (mq.matches) {
+      setDietaryOpen(true);
+      setNutritionalOpen(true);
+    }
+  }, []);
 
   // Load saved preferences when the user is signed in
   const loadPreferences = useCallback(async () => {
@@ -503,19 +512,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 py-8 px-4">
+    <div className="min-h-screen bg-sky-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-8 relative pt-12 md:pt-0">
           {/* Auth button */}
           <div className="absolute right-0 top-0">
             {session?.user ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                <span className="text-sm text-zinc-600">
                   {session.user.name || session.user.email}
                 </span>
                 <button
                   onClick={() => signOut()}
-                  className="px-3 py-1.5 text-sm rounded-lg border border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+                  className="px-3 py-1.5 text-sm rounded-lg border border-zinc-300 text-zinc-700 hover:bg-zinc-100 transition-colors"
                 >
                   Sign out
                 </button>
@@ -539,7 +548,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-2 md:gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/cute-bee.svg" alt="Nav Bee Logo" className="w-8 h-8 md:w-12 md:h-12" />
-            <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-zinc-900">
               Nav Meal Planner
             </h1>
           </div>
@@ -547,7 +556,7 @@ export default function Home() {
 
         <div className="mb-6 flex flex-col md:flex-row gap-4">
           <div>
-            <label htmlFor="date-select" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <label htmlFor="date-select" className="block text-sm font-medium text-zinc-700 mb-2">
               Select Date
             </label>
             <input
@@ -555,18 +564,18 @@ export default function Home() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div>
-            <label htmlFor="meal-type" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <label htmlFor="meal-type" className="block text-sm font-medium text-zinc-700 mb-2">
               Select Meal
             </label>
             <select
               id="meal-type"
               value={mealType}
               onChange={(e) => setMealType(e.target.value as MealType)}
-              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-48 max-w-full md:w-48 px-4 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
@@ -578,7 +587,7 @@ export default function Home() {
         <div className="mb-4">
           <button
             onClick={() => setDietaryOpen(!dietaryOpen)}
-            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2"
+            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 mb-2"
           >
             <span>Dietary Filters</span>
             <svg className={`w-4 h-4 transition-transform ${dietaryOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -601,9 +610,9 @@ export default function Home() {
                       setFilters(newFilters);
                       savePreferences(recGoals, newFilters);
                     }}
-                    className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
+                    className="w-4 h-4 rounded border-zinc-300 text-blue-500 focus:ring-blue-500"
                   />
-                  <span className="text-zinc-700 dark:text-zinc-300">{label}</span>
+                  <span className="text-zinc-700">{label}</span>
                 </label>
               ))}
             </div>
@@ -613,7 +622,7 @@ export default function Home() {
         <div className="mb-6">
           <button
             onClick={() => setNutritionalOpen(!nutritionalOpen)}
-            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2"
+            className="flex items-center justify-between w-full text-left text-sm font-medium text-zinc-700 mb-2"
           >
             <span>Nutritional Filters</span>
             <svg className={`w-4 h-4 transition-transform ${nutritionalOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -621,7 +630,7 @@ export default function Home() {
           {nutritionalOpen && (
             <div>
               {loadingGemini && (
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-2">Loading nutrition data...</p>
+                <p className="text-xs text-zinc-500 mb-2">Loading nutrition data...</p>
               )}
               <div className="flex flex-wrap gap-4">
                 {([
@@ -640,9 +649,9 @@ export default function Home() {
                         setNutritionalFilters(newNutritional);
                         savePreferences(recGoals, filters, newNutritional);
                       }}
-                      className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-blue-500 focus:ring-blue-500"
+                      className="w-4 h-4 rounded border-zinc-300 text-blue-500 focus:ring-blue-500"
                     />
-                    <span className="text-zinc-700 dark:text-zinc-300">{label}</span>
+                    <span className="text-zinc-700">{label}</span>
                   </label>
                 ))}
               </div>
@@ -652,11 +661,11 @@ export default function Home() {
 
         {/* Email Opt-In */}
         {session?.user && (
-          <div className="mb-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md border border-zinc-200 dark:border-zinc-700 p-6">
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1">
+          <div className="mb-6 bg-white rounded-lg shadow-md border border-zinc-200 p-6">
+            <h2 className="text-lg font-semibold text-zinc-900 mb-1">
               Daily Meal Plan Emails
             </h2>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+            <p className="text-sm text-zinc-600 mb-4">
               Would you like to receive daily meal plan recommendations and highlights of your favorite NAV meals?
             </p>
             <div className="flex items-center gap-6 mb-4">
@@ -668,7 +677,7 @@ export default function Home() {
                   onChange={() => setEmailOptInChoice('yes')}
                   className="w-4 h-4 text-blue-600 focus:ring-blue-500"
                 />
-                <span className="text-zinc-700 dark:text-zinc-300">Yes</span>
+                <span className="text-zinc-700">Yes</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -678,7 +687,7 @@ export default function Home() {
                   onChange={() => setEmailOptInChoice('no')}
                   className="w-4 h-4 text-blue-600 focus:ring-blue-500"
                 />
-                <span className="text-zinc-700 dark:text-zinc-300">No</span>
+                <span className="text-zinc-700">No</span>
               </label>
             </div>
             <button
@@ -689,7 +698,7 @@ export default function Home() {
               {emailSaving ? 'Saving...' : 'Save'}
             </button>
             {emailStatus && (
-              <p className={`mt-3 text-sm ${emailStatus.includes('inbox') ? 'text-green-600 dark:text-green-400' : emailStatus.includes('not') ? 'text-zinc-500 dark:text-zinc-400' : 'text-red-600 dark:text-red-400'}`}>
+              <p className={`mt-3 text-sm ${emailStatus.includes('inbox') ? 'text-green-600' : emailStatus.includes('not') ? 'text-zinc-500' : 'text-red-600'}`}>
                 {emailStatus}
               </p>
             )}
@@ -697,53 +706,53 @@ export default function Home() {
         )}
 
         {/* Meal Recommender */}
-        <div className="mb-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+        <div className="mb-6 bg-white rounded-lg shadow-md border border-zinc-200 overflow-hidden">
           <button
             onClick={() => setShowRecommender(!showRecommender)}
-            className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-zinc-50 dark:hover:bg-zinc-750 transition-colors"
+            className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-zinc-50 transition-colors"
           >
             <div>
-              <h2 className="text-lg font-semibold text-zinc-900 dark:text-white">Meal Recommender</h2>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">Get personalized meal suggestions based on your goals</p>
+              <h2 className="text-lg font-semibold text-zinc-900">Meal Recommender</h2>
+              <p className="text-sm text-zinc-500">Get personalized meal suggestions based on your goals</p>
             </div>
             <span className="text-zinc-400 text-xl">{showRecommender ? '−' : '+'}</span>
           </button>
 
           {showRecommender && (
-            <div className="px-6 pb-6 border-t border-zinc-200 dark:border-zinc-700 pt-4">
+            <div className="px-6 pb-6 border-t border-zinc-200 pt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-sm font-medium text-zinc-700 mb-1">
                     Daily Calorie Target
                   </label>
                   <input
                     type="number"
                     value={recGoals.dailyCalories}
                     onChange={(e) => setRecGoals(g => ({ ...g, dailyCalories: parseInt(e.target.value) || 0 }))}
-                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="e.g. 2000"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-sm font-medium text-zinc-700 mb-1">
                     Daily Protein Target (g)
                   </label>
                   <input
                     type="number"
                     value={recGoals.dailyProtein}
                     onChange={(e) => setRecGoals(g => ({ ...g, dailyProtein: parseInt(e.target.value) || 0 }))}
-                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="e.g. 150"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-sm font-medium text-zinc-700 mb-1">
                     Goal
                   </label>
                   <select
                     value={recGoals.fitnessGoal}
                     onChange={(e) => setRecGoals(g => ({ ...g, fitnessGoal: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="">General health</option>
                     <option value="muscle gain">Muscle gain</option>
@@ -755,13 +764,13 @@ export default function Home() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-sm font-medium text-zinc-700 mb-1">
                     Taste
                   </label>
                   <select
                     value={recGoals.taste}
                     onChange={(e) => setRecGoals(g => ({ ...g, taste: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="balanced">Balanced — mix of nutrition and taste</option>
                     <option value="tasty">Tasty — prioritize what I like</option>
@@ -769,13 +778,13 @@ export default function Home() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-sm font-medium text-zinc-700 mb-1">
                     Appetite for this meal
                   </label>
                   <select
                     value={recGoals.appetite}
                     onChange={(e) => setRecGoals(g => ({ ...g, appetite: e.target.value }))}
-                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="small">Small — light meal</option>
                     <option value="medium">Medium — regular meal</option>
@@ -785,14 +794,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label className="block text-sm font-medium text-zinc-700 mb-1">
                   Dietary Restrictions / Preferences
                 </label>
                 <input
                   type="text"
                   value={recGoals.restrictions}
                   onChange={(e) => setRecGoals(g => ({ ...g, restrictions: e.target.value }))}
-                  className="w-full px-3 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g. vegetarian, no dairy, halal, gluten-free..."
                 />
               </div>
@@ -803,12 +812,12 @@ export default function Home() {
               >
                 {loadingRec ? 'Generating...' : 'Get Recommendations'}
               </button>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 italic mt-2">
+              <p className="text-sm text-zinc-500 italic mt-2">
                 Feel free to like or dislike any recommended items, then hit &ldquo;Get Recommendations&rdquo; again to regenerate!
               </p>
 
               {recError && (
-                <div className="mt-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 text-sm text-red-700 dark:text-red-400">
+                <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
                   {recError}
                 </div>
               )}
@@ -816,31 +825,31 @@ export default function Home() {
               {recommendation && (
                 <div className="mt-6 space-y-6">
                   <div>
-                    <h3 className="text-md font-semibold text-zinc-900 dark:text-white mb-3">Suggested Meal Plan</h3>
+                    <h3 className="text-md font-semibold text-zinc-900 mb-3">Suggested Meal Plan</h3>
                     <div className="space-y-2">
                       {recommendation.mealPlan.map((item, i) => {
                         const rating = getFoodRating(item.name);
                         return (
-                          <div key={i} className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+                          <div key={i} className="flex justify-between items-center bg-green-50 border border-green-200 rounded-lg p-3">
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => toggleFoodRating(item.name, 'like')}
-                                className={`p-1 rounded transition-colors ${rating === 'like' ? 'text-blue-500' : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'}`}
+                                className={`p-1 rounded transition-colors ${rating === 'like' ? 'text-blue-500' : 'text-zinc-300 hover:text-blue-400'}`}
                                 title="Like"
                               >
                                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 1 1 3 0v6a1.5 1.5 0 0 1-3 0v-6ZM6 10.333v5.43a2 2 0 0 0 1.106 1.79l.05.025A4 4 0 0 0 8.943 18h5.416a2 2 0 0 0 1.962-1.608l1.2-6A2 2 0 0 0 15.56 8H12V4a2 2 0 0 0-2-2 1 1 0 0 0-1 1v.667a4 4 0 0 1-.8 2.4L6.8 7.933a4 4 0 0 0-.8 2.4Z" /></svg>
                               </button>
                               <button
                                 onClick={() => toggleFoodRating(item.name, 'dislike')}
-                                className={`p-1 rounded transition-colors ${rating === 'dislike' ? 'text-red-500' : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'}`}
+                                className={`p-1 rounded transition-colors ${rating === 'dislike' ? 'text-red-500' : 'text-zinc-300 hover:text-red-400'}`}
                                 title="Dislike"
                               >
                                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 9.5a1.5 1.5 0 1 1-3 0v-6a1.5 1.5 0 0 1 3 0v6ZM14 9.667V4.236a2 2 0 0 0-1.106-1.789l-.05-.025A4 4 0 0 0 11.057 2H5.64a2 2 0 0 0-1.962 1.608l-1.2 6A2 2 0 0 0 4.44 12H8v4a2 2 0 0 0 2 2 1 1 0 0 0 1-1v-.667a4 4 0 0 1 .8-2.4l1.4-1.867a4 4 0 0 0 .8-2.4Z" /></svg>
                               </button>
-                              <span className="font-medium text-zinc-900 dark:text-white">{item.name}</span>
-                              <span className="text-sm text-zinc-500 dark:text-zinc-400">({item.quantity})</span>
+                              <span className="font-medium text-zinc-900">{item.name}</span>
+                              <span className="text-sm text-zinc-500">({item.quantity})</span>
                             </div>
-                            <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+                            <div className="flex gap-3 text-sm text-zinc-600">
                               <span>{item.calories} cal</span>
                               <span>{item.protein}g P</span>
                               <span>{item.carbs}g C</span>
@@ -850,7 +859,7 @@ export default function Home() {
                         );
                       })}
                     </div>
-                    <div className="mt-2 flex justify-end gap-4 text-sm font-semibold text-zinc-700 dark:text-zinc-300 bg-green-100 dark:bg-green-900/40 rounded-lg p-3">
+                    <div className="mt-2 flex justify-end gap-4 text-sm font-semibold text-zinc-700 bg-green-100 rounded-lg p-3">
                       <span>Total:</span>
                       <span>{recommendation.mealPlanTotals.calories} cal</span>
                       <span>{recommendation.mealPlanTotals.protein}g P</span>
@@ -861,32 +870,32 @@ export default function Home() {
 
                   {recommendation.extras && recommendation.extras.length > 0 && (
                     <div>
-                      <h3 className="text-md font-semibold text-zinc-900 dark:text-white mb-1">Good Add-Ons and Alternatives</h3>
-                      <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-3">Extra items to complement the plan, or alternatives to swap in</p>
+                      <h3 className="text-md font-semibold text-zinc-900 mb-1">Good Add-Ons and Alternatives</h3>
+                      <p className="text-sm text-zinc-500 mb-3">Extra items to complement the plan, or alternatives to swap in</p>
                       <div className="space-y-2">
                         {recommendation.extras.map((item, i) => {
                           const rating = getFoodRating(item.name);
                           return (
-                            <div key={i} className="flex justify-between items-center bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                            <div key={i} className="flex justify-between items-center bg-blue-50 border border-blue-200 rounded-lg p-3">
                               <div className="flex items-center gap-2">
                                 <button
                                   onClick={() => toggleFoodRating(item.name, 'like')}
-                                  className={`p-1 rounded transition-colors ${rating === 'like' ? 'text-blue-500' : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'}`}
+                                  className={`p-1 rounded transition-colors ${rating === 'like' ? 'text-blue-500' : 'text-zinc-300 hover:text-blue-400'}`}
                                   title="Like"
                                 >
                                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 1 1 3 0v6a1.5 1.5 0 0 1-3 0v-6ZM6 10.333v5.43a2 2 0 0 0 1.106 1.79l.05.025A4 4 0 0 0 8.943 18h5.416a2 2 0 0 0 1.962-1.608l1.2-6A2 2 0 0 0 15.56 8H12V4a2 2 0 0 0-2-2 1 1 0 0 0-1 1v.667a4 4 0 0 1-.8 2.4L6.8 7.933a4 4 0 0 0-.8 2.4Z" /></svg>
                                 </button>
                                 <button
                                   onClick={() => toggleFoodRating(item.name, 'dislike')}
-                                  className={`p-1 rounded transition-colors ${rating === 'dislike' ? 'text-red-500' : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'}`}
+                                  className={`p-1 rounded transition-colors ${rating === 'dislike' ? 'text-red-500' : 'text-zinc-300 hover:text-red-400'}`}
                                   title="Dislike"
                                 >
                                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 9.5a1.5 1.5 0 1 1-3 0v-6a1.5 1.5 0 0 1 3 0v6ZM14 9.667V4.236a2 2 0 0 0-1.106-1.789l-.05-.025A4 4 0 0 0 11.057 2H5.64a2 2 0 0 0-1.962 1.608l-1.2 6A2 2 0 0 0 4.44 12H8v4a2 2 0 0 0 2 2 1 1 0 0 0 1-1v-.667a4 4 0 0 1 .8-2.4l1.4-1.867a4 4 0 0 0 .8-2.4Z" /></svg>
                                 </button>
-                                <span className="font-medium text-zinc-900 dark:text-white">{item.name}</span>
-                                <span className="text-sm text-zinc-500 dark:text-zinc-400">({item.quantity})</span>
+                                <span className="font-medium text-zinc-900">{item.name}</span>
+                                <span className="text-sm text-zinc-500">({item.quantity})</span>
                               </div>
-                              <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+                              <div className="flex gap-3 text-sm text-zinc-600">
                                 <span>{item.calories} cal</span>
                                 <span>{item.protein}g P</span>
                                 <span>{item.carbs}g C</span>
@@ -908,18 +917,18 @@ export default function Home() {
         {loading && (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-zinc-300 border-t-blue-500"></div>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">Loading menu...</p>
+            <p className="mt-4 text-zinc-600">Loading menu...</p>
           </div>
         )}
 
         {error && (
-          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-700 dark:text-red-400">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
             {error}
           </div>
         )}
 
         {!loading && !error && totalFilteredItems === 0 && (
-          <div className="text-center py-12 text-zinc-600 dark:text-zinc-400">
+          <div className="text-center py-12 text-zinc-600">
             No menu items available for this meal.
           </div>
         )}
@@ -927,21 +936,25 @@ export default function Home() {
         {!loading && !error && totalFilteredItems > 0 && (
           <div className="grid gap-4">
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <h3 className="text-lg font-medium text-zinc-900 dark:text-white">
-                  All Items — Like/Dislike to save your preferences!
-                </h3>
-                {loadingGemini && (
-                  <span className="text-xs text-zinc-500">Loading nutrition data...</span>
-                )}
+              <div className="mb-3">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-medium text-zinc-900">
+                    All Items
+                  </h3>
+                  {loadingGemini && (
+                    <span className="text-xs text-zinc-500">Loading nutrition data...</span>
+                  )}
+                </div>
+                <p className="text-sm text-zinc-500 mt-0.5">Login and like/dislike to save preferences!</p>
+                <p className="text-xs text-amber-600 mt-2">Note: All nutritional data is approximated by Gemini and should be taken with a pinch of salt.</p>
               </div>
               <div className="space-y-5 max-w-2xl md:max-w-none mx-auto">
                 {groupedCategories.map((group) => (
                   <div key={group.category}>
                     <h4 className={`text-sm font-semibold uppercase tracking-wide mb-1.5 ${
                       group.category === 'Disliked Items'
-                        ? 'text-zinc-400 dark:text-zinc-500'
-                        : 'text-blue-600 dark:text-blue-400'
+                        ? 'text-zinc-400'
+                        : 'text-blue-600'
                     }`}>
                       {group.category}
                     </h4>
@@ -954,8 +967,8 @@ export default function Home() {
                             key={item.id}
                             className={`rounded-lg p-2 md:p-3 border transition-colors overflow-hidden ${
                               rating === 'dislike'
-                                ? 'bg-zinc-100 dark:bg-zinc-850 border-zinc-200 dark:border-zinc-700 opacity-60'
-                                : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500'
+                                ? 'bg-zinc-100 border-zinc-200 opacity-60'
+                                : 'bg-white border-zinc-200 hover:border-blue-500'
                             }`}
                           >
                             {/* Desktop: single row */}
@@ -966,7 +979,7 @@ export default function Home() {
                                   className={`p-1 rounded transition-colors shrink-0 ${
                                     rating === 'like'
                                       ? 'text-blue-500'
-                                      : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'
+                                      : 'text-zinc-300 hover:text-blue-400'
                                   }`}
                                   title="Like this item"
                                 >
@@ -979,7 +992,7 @@ export default function Home() {
                                   className={`p-1 rounded transition-colors shrink-0 ${
                                     rating === 'dislike'
                                       ? 'text-red-500'
-                                      : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'
+                                      : 'text-zinc-300 hover:text-red-400'
                                   }`}
                                   title="Dislike this item"
                                 >
@@ -988,14 +1001,14 @@ export default function Home() {
                                   </svg>
                                 </button>
                                 <span className={`font-medium truncate ${
-                                  rating === 'dislike' ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-900 dark:text-white'
+                                  rating === 'dislike' ? 'text-zinc-500' : 'text-zinc-900'
                                 }`}>
                                   {item.food?.name}
                                 </span>
                                 <span className="text-xs text-zinc-400 whitespace-nowrap">({getServingSize(item.food!)})</span>
                               </div>
                               {est ? (
-                                <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 shrink-0">
+                                <div className="flex gap-3 text-sm text-zinc-600 shrink-0">
                                   <span>{est.calories} cal</span>
                                   <span>{est.protein}g P</span>
                                   <span>{est.carbs}g C</span>
@@ -1015,7 +1028,7 @@ export default function Home() {
                                   className={`p-1 rounded transition-colors ${
                                     rating === 'like'
                                       ? 'text-blue-500'
-                                      : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'
+                                      : 'text-zinc-300 hover:text-blue-400'
                                   }`}
                                   title="Like this item"
                                 >
@@ -1028,7 +1041,7 @@ export default function Home() {
                                   className={`p-1 rounded transition-colors ${
                                     rating === 'dislike'
                                       ? 'text-red-500'
-                                      : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'
+                                      : 'text-zinc-300 hover:text-red-400'
                                   }`}
                                   title="Dislike this item"
                                 >
@@ -1042,7 +1055,7 @@ export default function Home() {
                                 {/* Line 1: Name + serving size */}
                                 <div className="flex items-baseline gap-1.5 overflow-hidden">
                                   <span className={`text-sm font-medium truncate ${
-                                    rating === 'dislike' ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-900 dark:text-white'
+                                    rating === 'dislike' ? 'text-zinc-500' : 'text-zinc-900'
                                   }`}>
                                     {item.food?.name}
                                   </span>
@@ -1050,7 +1063,7 @@ export default function Home() {
                                 </div>
                                 {/* Line 2: Nutrition stats */}
                                 {est ? (
-                                  <div className="flex gap-2 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                                  <div className="flex gap-2 mt-0.5 text-xs text-zinc-500">
                                     <span>{est.calories} cal</span>
                                     <span>{est.protein}g P</span>
                                     <span>{est.carbs}g C</span>
@@ -1068,12 +1081,12 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-zinc-400 mt-3">
-                Nutrition estimated by Gemini. Dietary icons from dining hall API.
-              </p>
             </div>
           </div>
         )}
+        <footer className="text-center text-sm text-zinc-400 mt-10 pb-4">
+          made by <a href="https://ishankhire.blogspot.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 hover:underline">ishan</a>
+        </footer>
       </div>
     </div>
   );
