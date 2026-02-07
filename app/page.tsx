@@ -109,6 +109,8 @@ export default function Home() {
 
   // Food like/dislike ratings: keyed by food name (lowercase), value is 'like' | 'dislike'
   const [foodRatings, setFoodRatings] = useState<Record<string, 'like' | 'dislike'>>({});
+  // Delayed copy of ratings used for sorting only — gives visual feedback time before reordering
+  const [sortRatings, setSortRatings] = useState<Record<string, 'like' | 'dislike'>>({});
   const [ratingsLoaded, setRatingsLoaded] = useState(false);
 
   const { data: session } = useSession();
@@ -150,6 +152,7 @@ export default function Home() {
         const data = await res.json();
         if (data.ratings) {
           setFoodRatings(data.ratings);
+          setSortRatings(data.ratings);
         }
       }
     } catch (err) {
@@ -219,16 +222,19 @@ export default function Home() {
     // If already set to this rating, remove it (toggle off). Otherwise set it.
     const newRating = current === rating ? null : rating;
 
-    // Optimistic update
-    setFoodRatings(prev => {
-      const next = { ...prev };
-      if (newRating === null) {
-        delete next[key];
-      } else {
-        next[key] = newRating;
-      }
-      return next;
-    });
+    // Immediate visual update (color change)
+    const updatedRatings: Record<string, 'like' | 'dislike'> = { ...foodRatings };
+    if (newRating === null) {
+      delete updatedRatings[key];
+    } else {
+      updatedRatings[key] = newRating;
+    }
+    setFoodRatings(updatedRatings);
+
+    // Delay the sort reorder so the user sees the visual feedback first
+    setTimeout(() => {
+      setSortRatings({ ...updatedRatings });
+    }, 600);
 
     // Persist to server (only if signed in)
     if (session?.user) {
@@ -304,8 +310,8 @@ export default function Home() {
     return true;
   }).sort((a, b) => {
     const ratingOrder = { like: 0, neutral: 1, dislike: 2 };
-    const rA = ratingOrder[getFoodRating(a.food!.name) ?? 'neutral'];
-    const rB = ratingOrder[getFoodRating(b.food!.name) ?? 'neutral'];
+    const rA = ratingOrder[sortRatings[getCacheKey(a.food!.name)] ?? 'neutral'];
+    const rB = ratingOrder[sortRatings[getCacheKey(b.food!.name)] ?? 'neutral'];
     return rA - rB;
   });
 
@@ -837,64 +843,109 @@ export default function Home() {
                           : 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-blue-500 dark:hover:border-blue-500'
                       }`}
                     >
-                      <div className="flex justify-between items-center gap-2">
-                        <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
-                          {/* Thumbs up / down buttons */}
+                      {/* Desktop: single row */}
+                      <div className="hidden md:flex justify-between items-center gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
                           <button
                             onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'like'); }}
-                            className={`p-0.5 md:p-1 rounded transition-colors shrink-0 ${
+                            className={`p-1 rounded transition-colors shrink-0 ${
                               rating === 'like'
                                 ? 'text-blue-500'
                                 : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'
                             }`}
                             title="Like this item"
                           >
-                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M2 10.5a1.5 1.5 0 1 1 3 0v6a1.5 1.5 0 0 1-3 0v-6ZM6 10.333v5.43a2 2 0 0 0 1.106 1.79l.05.025A4 4 0 0 0 8.943 18h5.416a2 2 0 0 0 1.962-1.608l1.2-6A2 2 0 0 0 15.56 8H12V4a2 2 0 0 0-2-2 1 1 0 0 0-1 1v.667a4 4 0 0 1-.8 2.4L6.8 7.933a4 4 0 0 0-.8 2.4Z" />
                             </svg>
                           </button>
                           <button
                             onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'dislike'); }}
-                            className={`p-0.5 md:p-1 rounded transition-colors shrink-0 ${
+                            className={`p-1 rounded transition-colors shrink-0 ${
                               rating === 'dislike'
                                 ? 'text-red-500'
                                 : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'
                             }`}
                             title="Dislike this item"
                           >
-                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M18 9.5a1.5 1.5 0 1 1-3 0v-6a1.5 1.5 0 0 1 3 0v6ZM14 9.667V4.236a2 2 0 0 0-1.106-1.789l-.05-.025A4 4 0 0 0 11.057 2H5.64a2 2 0 0 0-1.962 1.608l-1.2 6A2 2 0 0 0 4.44 12H8v4a2 2 0 0 0 2 2 1 1 0 0 0 1-1v-.667a4 4 0 0 1 .8-2.4l1.4-1.867a4 4 0 0 0 .8-2.4Z" />
                             </svg>
                           </button>
-                          <span
-                            className={`text-sm md:text-base font-medium truncate ${
-                              rating === 'dislike'
-                                ? 'text-zinc-500 dark:text-zinc-400'
-                                : 'text-zinc-900 dark:text-white'
-                            }`}
-                          >
+                          <span className={`font-medium truncate ${
+                            rating === 'dislike' ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-900 dark:text-white'
+                          }`}>
                             {item.food?.name}
                           </span>
+                          {est && <span className="text-xs text-zinc-400 whitespace-nowrap">({est.servingSize})</span>}
                         </div>
                         {est ? (
-                          <div className="flex items-center gap-1 shrink-0">
-                            <span className="text-xs text-zinc-400 whitespace-nowrap hidden md:inline">({est.servingSize})</span>
-                            <div className="flex gap-1.5 md:gap-3 text-xs md:text-sm text-zinc-600 dark:text-zinc-400">
-                              <span className="text-center"><span className="block md:inline font-medium">{est.calories}</span><span className="block md:inline md:ml-0.5">cal</span></span>
-                              <span className="text-center"><span className="block md:inline font-medium">{est.protein}g</span><span className="block md:inline md:ml-0.5">P</span></span>
-                              <span className="text-center"><span className="block md:inline font-medium">{est.carbs}g</span><span className="block md:inline md:ml-0.5">C</span></span>
-                              <span className="text-center"><span className="block md:inline font-medium">{est.fat}g</span><span className="block md:inline md:ml-0.5">F</span></span>
-                            </div>
+                          <div className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 shrink-0">
+                            <span>{est.calories} cal</span>
+                            <span>{est.protein}g P</span>
+                            <span>{est.carbs}g C</span>
+                            <span>{est.fat}g F</span>
                           </div>
                         ) : (
                           <span className="text-xs text-zinc-400">...</span>
                         )}
                       </div>
-                      {est && (
-                        <div className="md:hidden mt-0.5 ml-9 text-xs text-zinc-400 whitespace-nowrap">
-                          {est.servingSize}
+
+                      {/* Mobile: thumbs left, two lines right */}
+                      <div className="flex md:hidden gap-2">
+                        {/* Thumbs column */}
+                        <div className="flex flex-col items-center gap-1 shrink-0 pt-0.5">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'like'); }}
+                            className={`p-1 rounded transition-colors ${
+                              rating === 'like'
+                                ? 'text-blue-500'
+                                : 'text-zinc-300 dark:text-zinc-600 hover:text-blue-400'
+                            }`}
+                            title="Like this item"
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M2 10.5a1.5 1.5 0 1 1 3 0v6a1.5 1.5 0 0 1-3 0v-6ZM6 10.333v5.43a2 2 0 0 0 1.106 1.79l.05.025A4 4 0 0 0 8.943 18h5.416a2 2 0 0 0 1.962-1.608l1.2-6A2 2 0 0 0 15.56 8H12V4a2 2 0 0 0-2-2 1 1 0 0 0-1 1v.667a4 4 0 0 1-.8 2.4L6.8 7.933a4 4 0 0 0-.8 2.4Z" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); toggleFoodRating(item.food!.name, 'dislike'); }}
+                            className={`p-1 rounded transition-colors ${
+                              rating === 'dislike'
+                                ? 'text-red-500'
+                                : 'text-zinc-300 dark:text-zinc-600 hover:text-red-400'
+                            }`}
+                            title="Dislike this item"
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M18 9.5a1.5 1.5 0 1 1-3 0v-6a1.5 1.5 0 0 1 3 0v6ZM14 9.667V4.236a2 2 0 0 0-1.106-1.789l-.05-.025A4 4 0 0 0 11.057 2H5.64a2 2 0 0 0-1.962 1.608l-1.2 6A2 2 0 0 0 4.44 12H8v4a2 2 0 0 0 2 2 1 1 0 0 0 1-1v-.667a4 4 0 0 1 .8-2.4l1.4-1.867a4 4 0 0 0 .8-2.4Z" />
+                            </svg>
+                          </button>
                         </div>
-                      )}
+                        {/* Content column: two lines */}
+                        <div className="min-w-0 flex-1">
+                          {/* Line 1: Name + serving size */}
+                          <div className="flex items-baseline gap-1.5">
+                            <span className={`text-sm font-medium truncate ${
+                              rating === 'dislike' ? 'text-zinc-500 dark:text-zinc-400' : 'text-zinc-900 dark:text-white'
+                            }`}>
+                              {item.food?.name}
+                            </span>
+                            {est && <span className="text-xs text-zinc-400 whitespace-nowrap shrink-0">{est.servingSize}</span>}
+                          </div>
+                          {/* Line 2: Nutrition stats */}
+                          {est ? (
+                            <div className="flex gap-2 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                              <span>{est.calories} cal</span>
+                              <span>{est.protein}g P</span>
+                              <span>{est.carbs}g C</span>
+                              <span>{est.fat}g F</span>
+                            </div>
+                          ) : (
+                            <span className="text-xs text-zinc-400 mt-0.5 block">...</span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
