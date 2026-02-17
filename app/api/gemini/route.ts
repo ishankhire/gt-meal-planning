@@ -16,6 +16,11 @@ interface FoodInput {
   ingredients: string | null;
 }
 
+/**
+ * 
+ * @param name 
+ * @returns 
+ */
 function getCacheKey(name: string): string {
   return name.toLowerCase().trim();
 }
